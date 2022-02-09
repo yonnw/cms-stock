@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cms_stock.Models.Dominio.Entidades
 {
-    public class obra
+    public class Obra
     {
         [Required]
         [Key]
