@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_LayoutLogin";
+}
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <div class="fadeIn first">
+            <img src="https://findicons.com/files/icons/1579/devine/256/stock.png" id="icon" alt="User Icon" />
+        </div>
+        <form action="/login/signin" method="post">
+            <input type="email" required="required" id="email" class="fadeIn second" name="email" placeholder="login">
+            <input type="password" required="required" id="password" class="fadeIn third" name="password" placeholder="password">
+
+            @if (!string.IsNullOrEmpty(ViewBag.erro))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.erro
+                </div>
+            }
+            
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+    </div>
+</div>
+

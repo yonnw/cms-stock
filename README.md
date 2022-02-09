@@ -1,0 +1,1 @@
+﻿-- dotnet aspnet-codegenerator controller -name AdministradoresController -m Administrador -dc ContextoCmas --relativeFolderPath Controllers --useDefaultLayout
