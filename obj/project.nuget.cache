@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JWz6cKwhelOXLBOvn9SwcfBE4VCUdXnDNvT2NbfAmBX1AIFij8BTyVHrJNcaGvQc0X7e3RFN5cAWe9eIGX+l8A==",
+  "dgSpecHash": "/9seryt7d7W7oH44LRTrZevZcC7JCg425N05UOUMvDImApT/ttIlw5D/bUJTwUP2u0x43hNun5z3Uo60kHYk1A==",
   "success": true,
   "projectFilePath": "D:\\gitHub\\cms-stock\\cms-stock.csproj",
   "expectedPackageFiles": [
@@ -27,8 +27,8 @@
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.22\\microsoft.entityframeworkcore.relational.3.1.22.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\3.1.21\\microsoft.entityframeworkcore.sqlite.3.1.21.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\3.1.21\\microsoft.entityframeworkcore.sqlite.core.3.1.21.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.22\\microsoft.entityframeworkcore.sqlserver.3.1.22.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.22\\microsoft.entityframeworkcore.tools.3.1.22.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.21\\microsoft.entityframeworkcore.sqlserver.3.1.21.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.21\\microsoft.entityframeworkcore.tools.3.1.21.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.22\\microsoft.extensions.caching.abstractions.3.1.22.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.22\\microsoft.extensions.caching.memory.3.1.22.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.22\\microsoft.extensions.configuration.3.1.22.nupkg.sha512",

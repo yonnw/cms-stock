@@ -368,3 +368,8 @@ D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\cms-stock.csproj.CopyComplete
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\cms-stock.dll
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\cms-stock.pdb
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\cms-stock.genruntimeconfig.cache
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Create.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Delete.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Details.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Edit.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Index.cshtml.g.cs

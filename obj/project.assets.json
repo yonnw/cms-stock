@@ -462,11 +462,11 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Sqlite.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/3.1.22": {
+      "Microsoft.EntityFrameworkCore.SqlServer/3.1.21": {
         "type": "package",
         "dependencies": {
           "Microsoft.Data.SqlClient": "1.1.3",
-          "Microsoft.EntityFrameworkCore.Relational": "3.1.22"
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.21"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
@@ -475,10 +475,10 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/3.1.22": {
+      "Microsoft.EntityFrameworkCore.Tools/3.1.21": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "3.1.22"
+          "Microsoft.EntityFrameworkCore.Design": "3.1.21"
         },
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -3305,31 +3305,31 @@
         "microsoft.entityframeworkcore.sqlite.core.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/3.1.22": {
-      "sha512": "0LFXsOJxJxaMMcxVCxuaFioLRlC/oBG2R0kcgXCaj0wBZAvfHA9W8coDUnurV727Vaxjii9jowE8YUH1Qw14Kg==",
+    "Microsoft.EntityFrameworkCore.SqlServer/3.1.21": {
+      "sha512": "wq3oji8nAQBUuRizaxVgpdy0lJn+BUgrLNZtlKtAbny5emZJARVoQUJW1JuxIizcQzSGmwJ61CPAIE1nxTmZ4A==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/3.1.22",
+      "path": "microsoft.entityframeworkcore.sqlserver/3.1.21",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.3.1.22.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.3.1.21.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/3.1.22": {
-      "sha512": "8BJRSOPzN1Oc6XuTuyC5Qrms6ftHrmuxAVDi8AbHrzc0RiLrXMqfhhUPf5ZFZD8ghAbKIRK+R0k50S3LtitYLA==",
+    "Microsoft.EntityFrameworkCore.Tools/3.1.21": {
+      "sha512": "GlIzvL1+E562ReIVk3S9T5Phh723FYGz7oNFFdV0IFpD3uKZNzRFkGSukQxZAKgYtTzaL6HM7mt/OUXfzdHG0g==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/3.1.22",
+      "path": "microsoft.entityframeworkcore.tools/3.1.21",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.tools.3.1.22.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.3.1.21.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -8818,9 +8818,9 @@
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.EntityFrameworkCore >= 3.1.22",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.22",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.22",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.21",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.21",
-      "Microsoft.EntityFrameworkCore.Tools >= 3.1.22",
+      "Microsoft.EntityFrameworkCore.Tools >= 3.1.21",
       "Microsoft.VisualStudio.Web.CodeGeneration >= 3.1.5",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5",
       "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 3.1.5",
@@ -8878,7 +8878,7 @@
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
-            "version": "[3.1.22, )"
+            "version": "[3.1.21, )"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
@@ -8888,7 +8888,7 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[3.1.22, )"
+            "version": "[3.1.21, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration": {
             "target": "Package",

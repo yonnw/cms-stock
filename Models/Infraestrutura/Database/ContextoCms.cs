@@ -1,4 +1,4 @@
-using cms_stock.Models.Dominio.Entidades;
+﻿using cms_stock.Models.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System;
@@ -20,5 +20,6 @@ namespace cms_stock.Models.Infraestrutura.Database
 
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Pagina> Paginas { get; set; }
+        public DbSet<Artigo> Artigos { get; set; }
     }
 }
