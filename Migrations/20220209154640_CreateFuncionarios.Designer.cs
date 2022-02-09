@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cms_stock.Models.Infraestrutura.Database;
 
 namespace cms_stock.Migrations
 {
     [DbContext(typeof(ContextoCms))]
-    partial class ContextoCmsModelSnapshot : ModelSnapshot
+    [Migration("20220209154640_CreateFuncionarios")]
+    partial class CreateFuncionarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,26 +82,6 @@ namespace cms_stock.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Artigos");
-                });
-
-            modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.Equipamento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Inativo")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Equipamentos");
                 });
 
             modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.Funcionario", b =>

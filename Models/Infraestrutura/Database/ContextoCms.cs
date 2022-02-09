@@ -21,5 +21,7 @@ namespace cms_stock.Models.Infraestrutura.Database
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Pagina> Paginas { get; set; }
         public DbSet<Artigo> Artigos { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<Equipamento> Equipamentos { get; set; }
     }
 }

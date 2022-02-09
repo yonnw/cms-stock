@@ -373,3 +373,13 @@ D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Delete.cshtml.g.
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Details.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Edit.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Index.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Funcionarios\Create.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Funcionarios\Delete.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Funcionarios\Details.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Funcionarios\Edit.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Funcionarios\Index.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Create.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Delete.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Details.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Edit.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Index.cshtml.g.cs

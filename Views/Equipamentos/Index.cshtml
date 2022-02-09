@@ -1,4 +1,4 @@
-﻿@model IEnumerable<cms_stock.Models.Dominio.Entidades.Artigo>
+﻿@model IEnumerable<cms_stock.Models.Dominio.Entidades.Equipamento>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,19 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Referencia)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Inativo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Stockatual)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observacao)
             </th>
             <th></th>
         </tr>
@@ -35,19 +26,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Referencia)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Inativo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stockatual)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observacao)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
