@@ -23,5 +23,6 @@ namespace cms_stock.Models.Infraestrutura.Database
         public DbSet<Artigo> Artigos { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Equipamento> Equipamentos { get; set; }
+        public DbSet<CentroCusto> CentroCustos { get; set; }
     }
 }

@@ -25,7 +25,6 @@ namespace cms_stock.Models.Dominio.Entidades
         [Required]
         public int Stockatual { get; set; }
 
-        [Required]
         [Column(TypeName = "text")]
         public string Observacao { get; set; }
     }

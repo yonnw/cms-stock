@@ -383,3 +383,8 @@ D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Delete.csht
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Details.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Edit.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Index.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Create.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Delete.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Details.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Edit.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Index.cshtml.g.cs

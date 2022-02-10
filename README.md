@@ -1,1 +1,1 @@
-﻿-- dotnet aspnet-codegenerator controller -name AdministradoresController -m Administrador -dc ContextoCmas --relativeFolderPath Controllers --useDefaultLayout
+﻿Ver nos artigos o campo observação not required, após fazer migração.

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cms_stock.Models.Dominio.Entidades
 {
-    public class Obra
+    public class CentroCusto
     {
         [Required]
         [Key]
@@ -18,7 +18,7 @@ namespace cms_stock.Models.Dominio.Entidades
         [Required]
         public DateTime DataInicial { get; set; }
 
-        public DateTime DataFinal { get; set; }
+        public DateTime? DataFinal { get; set; }
 
         public float ValorTotal { get; set; }
 
