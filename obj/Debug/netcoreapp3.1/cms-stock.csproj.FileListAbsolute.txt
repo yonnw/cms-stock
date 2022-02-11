@@ -388,3 +388,8 @@ D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Delete.csht
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Details.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Edit.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\CentroCustos\Index.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\ArtCentroCustos\Create.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\ArtCentroCustos\Delete.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\ArtCentroCustos\Details.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\ArtCentroCustos\Edit.cshtml.g.cs
+D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\ArtCentroCustos\Index.cshtml.g.cs

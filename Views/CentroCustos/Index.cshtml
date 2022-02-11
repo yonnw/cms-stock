@@ -47,16 +47,15 @@
                 @Html.DisplayFor(modelItem => item.Fechada)
             </td>
             <th>
-                <a asp-controller="Artigos" asp-action="Create">
-                    <input class="btn-primary-dv" value="Inserir" />
-                </a>
+                @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
             </th>
             <th>
-                Pessoal
+                @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
             </th>
             <th>
-                Equipamentos
+                @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
             </th>
+            <th></th>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
