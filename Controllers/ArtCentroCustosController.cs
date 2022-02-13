@@ -68,9 +68,11 @@ namespace cms_stock.Controllers
         {
             if (ModelState.IsValid)
             {
-                var centrocustos = _context.CentroCustos.ToList();
-                var thiscentrocusto = centrocustos.Where(i => i.Id == 1 );
-
+                if(artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
+                {
+                    var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
+                    artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
+                }
                 _context.Add(artCentroCusto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "CentroCustos");
@@ -114,6 +116,11 @@ namespace cms_stock.Controllers
             {
                 try
                 {
+                    if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
+                    {
+                        var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
+                        artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
+                    }
                     _context.Update(artCentroCusto);
                     await _context.SaveChangesAsync();
                 }
@@ -147,6 +154,7 @@ namespace cms_stock.Controllers
                 .Include(a => a.Artigo)
                 .Include(a => a.CentroCusto)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (artCentroCusto == null)
             {
                 return NotFound();

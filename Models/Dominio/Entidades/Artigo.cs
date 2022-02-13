@@ -20,6 +20,13 @@ namespace cms_stock.Models.Dominio.Entidades
         public string Nome { get; set; }
 
         [Required]
+        public float PCusto { get; set; }
+
+        [Required]
+        [MaxLength(10)]
+        public string Unidade { get; set; }
+
+        [Required]
         public bool Inativo { get; set; }
 
         [Required]

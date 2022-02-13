@@ -54,7 +54,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Referencia,Nome,Inativo,Observacao")] Artigo artigo)
+        public async Task<IActionResult> Create([Bind("Id,Referencia,Nome,PCusto,Unidade,Inativo,Observacao")] Artigo artigo)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Referencia,Nome,Inativo,Observacao")] Artigo artigo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Referencia,Nome,PCusto,Unidade,Inativo,Observacao")] Artigo artigo)
         {
             if (id != artigo.Id)
             {

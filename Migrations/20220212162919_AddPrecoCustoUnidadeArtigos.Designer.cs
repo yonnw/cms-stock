@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cms_stock.Models.Infraestrutura.Database;
 
 namespace cms_stock.Migrations
 {
     [DbContext(typeof(ContextoCms))]
-    partial class ContextoCmsModelSnapshot : ModelSnapshot
+    [Migration("20220212162919_AddPrecoCustoUnidadeArtigos")]
+    partial class AddPrecoCustoUnidadeArtigos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,9 +69,6 @@ namespace cms_stock.Migrations
                     b.Property<float>("Qtd")
                         .HasColumnType("real");
 
-                    b.Property<float>("Valor")
-                        .HasColumnType("real");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ArtigoId");
@@ -98,7 +97,8 @@ namespace cms_stock.Migrations
                         .HasColumnType("text");
 
                     b.Property<float>("PCusto")
-                        .HasColumnType("real");
+                        .HasColumnType("real")
+                        .HasMaxLength(12);
 
                     b.Property<string>("Referencia")
                         .IsRequired()

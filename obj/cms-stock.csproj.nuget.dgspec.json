@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\gitHub\\cms-stock\\cms-stock.csproj": {}
+    "C:\\gitHub\\cms-stock\\cms-stock.csproj": {}
   },
   "projects": {
-    "D:\\gitHub\\cms-stock\\cms-stock.csproj": {
+    "C:\\gitHub\\cms-stock\\cms-stock.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\gitHub\\cms-stock\\cms-stock.csproj",
+        "projectUniqueName": "C:\\gitHub\\cms-stock\\cms-stock.csproj",
         "projectName": "cms-stock",
-        "projectPath": "D:\\gitHub\\cms-stock\\cms-stock.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\gitHub\\cms-stock\\obj\\",
+        "projectPath": "C:\\gitHub\\cms-stock\\cms-stock.csproj",
+        "packagesPath": "C:\\Users\\Daniel Vales\\.nuget\\packages\\",
+        "outputPath": "C:\\gitHub\\cms-stock\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Daniel Vales\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,7 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -99,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.405\\RuntimeIdentifierGraph.json"
         }
       }
     }
