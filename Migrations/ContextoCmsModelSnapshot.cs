@@ -26,6 +26,9 @@ namespace cms_stock.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Admin")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Contacto")
                         .IsRequired()
                         .HasColumnType("nvarchar(15)")
@@ -150,6 +153,34 @@ namespace cms_stock.Migrations
                     b.ToTable("CentroCustos");
                 });
 
+            modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.EquiCentroCusto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CentroCustoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EquipamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Qtd")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Valor")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CentroCustoId");
+
+                    b.HasIndex("EquipamentoId");
+
+                    b.ToTable("EquiCentroCustos");
+                });
+
             modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.Equipamento", b =>
                 {
                     b.Property<int>("Id")
@@ -168,6 +199,37 @@ namespace cms_stock.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Equipamentos");
+                });
+
+            modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.FuncCentroCusto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CentroCustoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Qtd")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Valor")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CentroCustoId");
+
+                    b.HasIndex("FuncionarioId");
+
+                    b.ToTable("FuncCentroCustos");
                 });
 
             modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.Funcionario", b =>
@@ -234,6 +296,36 @@ namespace cms_stock.Migrations
                     b.HasOne("cms_stock.Models.Dominio.Entidades.CentroCusto", "CentroCusto")
                         .WithMany()
                         .HasForeignKey("CentroCustoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.EquiCentroCusto", b =>
+                {
+                    b.HasOne("cms_stock.Models.Dominio.Entidades.CentroCusto", "CentroCusto")
+                        .WithMany()
+                        .HasForeignKey("CentroCustoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("cms_stock.Models.Dominio.Entidades.Equipamento", "Equipamento")
+                        .WithMany()
+                        .HasForeignKey("EquipamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("cms_stock.Models.Dominio.Entidades.FuncCentroCusto", b =>
+                {
+                    b.HasOne("cms_stock.Models.Dominio.Entidades.CentroCusto", "CentroCusto")
+                        .WithMany()
+                        .HasForeignKey("CentroCustoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("cms_stock.Models.Dominio.Entidades.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("FuncionarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -27,5 +27,7 @@ namespace cms_stock.Models.Dominio.Entidades
         [Required]
         [MaxLength(150)]
         public string Password { get; set; }
+
+        public bool Admin { get; set; }
     }
 }

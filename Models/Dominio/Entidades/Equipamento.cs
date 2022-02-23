@@ -17,5 +17,8 @@ namespace cms_stock.Models.Dominio.Entidades
 
         [Required]
         public bool Inativo { get; set; }
+
+        [Required]
+        public float PCusto { get; set; }
     }
 }

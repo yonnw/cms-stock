@@ -604,3 +604,13 @@ C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\cms-stock.dll
 C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\cms-stock.pdb
 C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\cms-stock.genruntimeconfig.cache
 C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Artigos\Form.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\FuncCentroCustos\Create.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\FuncCentroCustos\Delete.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\FuncCentroCustos\Details.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\FuncCentroCustos\Edit.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\FuncCentroCustos\Index.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\EquiCentroCustos\Create.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\EquiCentroCustos\Delete.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\EquiCentroCustos\Details.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\EquiCentroCustos\Edit.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\EquiCentroCustos\Index.cshtml.g.cs

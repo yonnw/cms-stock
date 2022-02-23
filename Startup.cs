@@ -56,7 +56,7 @@ namespace cms_stock
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=CentroCustos}/{action=Index}/{id?}");
             });
         }
     }
