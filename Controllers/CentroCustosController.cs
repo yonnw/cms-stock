@@ -35,10 +35,16 @@ namespace cms_stock.Controllers
 
             var centroCusto = await _context.CentroCustos
                 .FirstOrDefaultAsync(m => m.Id == id);
-            // Faz update a tabela CentroCustos.ValorTotal de todos os ArtCentroCustos
-            var totalCentroCusto = _context.ArtCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
-            centroCusto.ValorTotal = totalCentroCusto;
+            // Faz update a tabela CentroCustos.ValorTotal de todos os ArtCentroCustos, FuncCentroCustos, EquiCentroCustos
+            var totalArtigos = _context.ArtCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
+            var totalFuncionarios = _context.FuncCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
+            var totalEquipamentos = _context.EquiCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
+            centroCusto.ValorTotal = totalArtigos + totalFuncionarios + totalEquipamentos;
             _context.SaveChanges();
+
+            ViewBag.totalArtigos = totalArtigos;
+            ViewBag.totalFuncionarios = totalFuncionarios;
+            ViewBag.totalEquipamentos = totalEquipamentos;
 
             if (centroCusto == null)
             {

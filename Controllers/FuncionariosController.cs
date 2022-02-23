@@ -54,7 +54,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Inativo")] Funcionario funcionario)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Inativo,Valordia")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Inativo")] Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Inativo,Valordia")] Funcionario funcionario)
         {
             if (id != funcionario.Id)
             {

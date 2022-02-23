@@ -21,11 +21,17 @@ namespace cms_stock.Controllers
         }
 
         // GET: ArtCentroCustos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? CCustoid)
         {
+            if (CCustoid > 0)
+            {
+                var contextoCms1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid);
+                return View(await contextoCms1.ToListAsync());
+            }
             var contextoCms = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto);
             return View(await contextoCms.ToListAsync());
         }
+
 
         // GET: ArtCentroCustos/Details/5
         public async Task<IActionResult> Details(int? id)

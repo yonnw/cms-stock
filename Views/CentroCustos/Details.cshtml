@@ -5,18 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h3>Detalhes - @Html.DisplayFor(model => model.Nome)</h3>
+<h5>Total em Artigos: @ViewBag.totalArtigos € - @Html.ActionLink("Artigos", "Index", new { controller = "ArtCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
+<h5>Total em Funcionários: @ViewBag.totalFuncionarios € - @Html.ActionLink("Funcionários", "Index", new { controller = "FuncCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
+<h5>Total em Equipamentos: @ViewBag.totalEquipamentos € - @Html.ActionLink("Equipamentos", "Index", new { controller = "EquiCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
 
 <div>
-    <h4>CentroCusto</h4>
+    <h4>Valor total: @Html.DisplayFor(model => model.ValorTotal) €</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DataInicial)
         </dt>
@@ -28,12 +25,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DataFinal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ValorTotal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ValorTotal)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Fechada)

@@ -20,8 +20,13 @@ namespace cms_stock.Controllers
         }
 
         // GET: EquiCentroCustos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? CCustoid)
         {
+            if (CCustoid > 0)
+            {
+                var contextoCms1 = _context.EquiCentroCustos.Include(e => e.CentroCusto).Include(e => e.Equipamento).Where(i => i.CentroCustoId == CCustoid);
+                return View(await contextoCms1.ToListAsync());
+            }
             var contextoCms = _context.EquiCentroCustos.Include(e => e.CentroCusto).Include(e => e.Equipamento);
             return View(await contextoCms.ToListAsync());
         }
@@ -47,8 +52,12 @@ namespace cms_stock.Controllers
         }
 
         // GET: EquiCentroCustos/Create
-        public IActionResult Create()
+        public IActionResult Create(int CCustoId, string NCCusto)
         {
+            // Recebe o id, nome do centro de custo vindo do btn index-centrocustos para criar o artigo
+            ViewBag.ccusto = CCustoId;
+            ViewBag.nomeccusto = NCCusto;
+
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome");
             ViewData["EquipamentoId"] = new SelectList(_context.Equipamentos, "Id", "Nome");
             return View();
@@ -63,9 +72,14 @@ namespace cms_stock.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (equiCentroCusto.CentroCustoId > 0 && equiCentroCusto.EquipamentoId > 0)
+                {
+                    var equipamento = _context.Equipamentos.Where(i => i.Id == equiCentroCusto.EquipamentoId).ToList();
+                    equiCentroCusto.Valor = equipamento[0].PCusto * equiCentroCusto.Qtd;
+                }
                 _context.Add(equiCentroCusto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "CentroCustos");
             }
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", equiCentroCusto.CentroCustoId);
             ViewData["EquipamentoId"] = new SelectList(_context.Equipamentos, "Id", "Nome", equiCentroCusto.EquipamentoId);
@@ -106,6 +120,11 @@ namespace cms_stock.Controllers
             {
                 try
                 {
+                    if (equiCentroCusto.CentroCustoId > 0 && equiCentroCusto.EquipamentoId > 0)
+                    {
+                        var equipamento = _context.Equipamentos.Where(i => i.Id == equiCentroCusto.EquipamentoId).ToList();
+                        equiCentroCusto.Valor = equipamento[0].PCusto * equiCentroCusto.Qtd;
+                    }
                     _context.Update(equiCentroCusto);
                     await _context.SaveChangesAsync();
                 }

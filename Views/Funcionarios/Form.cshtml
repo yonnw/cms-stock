@@ -1,0 +1,23 @@
+﻿@model cms_stock.Models.Dominio.Entidades.Funcionario
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="Id" />
+<div class="form-group">
+    <label asp-for="Nome" class="control-label"></label>
+    <input asp-for="Nome" class="form-control" />
+    <span asp-validation-for="Nome" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Valordia" class="control-label"></label>
+    <input asp-for="Valordia" class="form-control" />
+    <span asp-validation-for="Valordia" class="text-danger"></span>
+</div>
+<div class="form-group form-check">
+    <label class="form-check-label">
+        <input class="form-check-input" asp-for="Inativo" /> @Html.DisplayNameFor(model => model.Inativo)
+    </label>
+</div>
+<div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary" />
+</div>

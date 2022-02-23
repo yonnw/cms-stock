@@ -20,8 +20,13 @@ namespace cms_stock.Controllers
         }
 
         // GET: FuncCentroCustos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? CCustoid)
         {
+            if (CCustoid > 0)
+            {
+                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid);
+                return View(await contextoCms1.ToListAsync());
+            }
             var contextoCms = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario);
             return View(await contextoCms.ToListAsync());
         }
@@ -67,9 +72,14 @@ namespace cms_stock.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0)
+                {
+                    var funcionario = _context.Funcionarios.Where(i => i.Id == funcCentroCusto.FuncionarioId).ToList();
+                    funcCentroCusto.Valor = funcionario[0].Valordia * funcCentroCusto.Qtd;
+                }
                 _context.Add(funcCentroCusto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "CentroCustos");
             }
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", funcCentroCusto.CentroCustoId);
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "Id", "Nome", funcCentroCusto.FuncionarioId);
@@ -110,6 +120,11 @@ namespace cms_stock.Controllers
             {
                 try
                 {
+                    if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0)
+                    {
+                        var funcionario = _context.Funcionarios.Where(i => i.Id == funcCentroCusto.FuncionarioId).ToList();
+                        funcCentroCusto.Valor = funcionario[0].Valordia * funcCentroCusto.Qtd;
+                    }
                     _context.Update(funcCentroCusto);
                     await _context.SaveChangesAsync();
                 }
