@@ -7,6 +7,13 @@
 
 <h1>Movimentos de Artigos</h1>
 
+<form asp-controller="ArtCentroCusto" asp-action="Index">
+    <div class="input-group">
+        <input type="search" id="artigoNome" name="artigoNome" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="submit" class="btn btn-outline-primary">search</button>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -23,23 +30,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Artigo.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Qtd)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artigo.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qtd)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    <link href="https://code.jquery.com/ui/1.12.1/themes/start/jquery-ui.css"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#artigoNome").autocomplete({
+                source: 'api/apiartigos/search'
+            });
+        });
+    </script>
+}

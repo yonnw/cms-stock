@@ -17,6 +17,10 @@
                 Artigo
                 <select asp-for="ArtigoId" class="form-control" asp-items="ViewBag.ArtigoId"></select>
             </div>
+            <div class="input-group">
+                <input type="search" id="artigoNome" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary">search</button>
+            </div>
             <div class="form-group">
                 <label asp-for="Qtd" class="control-label"></label>
                 <input asp-for="Qtd" class="form-control" />
@@ -35,4 +39,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#artigoNome").autocomplete({
+                source: 'api/apiartigos/search'
+            });
+        });
+    </script>
 }

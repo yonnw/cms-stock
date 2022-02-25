@@ -20,9 +20,17 @@ namespace cms_stock.Controllers
         }
 
         // GET: Artigos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string artigoNome)
         {
-            return View(await _context.Artigos.ToListAsync());
+            if(artigoNome != null)
+            {
+                var artigos = _context.Artigos.Where(a => a.Nome.Contains(artigoNome)).ToList();
+                return View(artigos);
+            }
+            else
+            {
+                return View(await _context.Artigos.ToListAsync());
+            }  
         }
 
         // GET: Artigos/Details/5
