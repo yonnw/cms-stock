@@ -18,13 +18,21 @@
                 <select asp-for="ArtigoId" class="form-control" asp-items="ViewBag.ArtigoId"></select>
             </div>
             <div class="input-group">
-                <input type="search" id="artigoNome" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <input type="search" id="Country_Name" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                 <button type="button" class="btn btn-outline-primary">search</button>
             </div>
             <div class="form-group">
                 <label asp-for="Qtd" class="control-label"></label>
                 <input asp-for="Qtd" class="form-control" />
                 <span asp-validation-for="Qtd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Artigo.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.ArtigoId)
+                    @Html.EditorFor(model => model.Artigo.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Artigo.Nome, "", new { @class = "text-danger" })
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -43,10 +51,32 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
-            $("#artigoNome").autocomplete({
-                source: 'api/apiartigos/search'
+
+            var countries = [
+                "Afghanistan",
+                "Albania",
+                "Algeria",
+                "AmericanSamoa",
+                "Andorra",
+                "Angola",
+                "Anguilla",
+                "Antigua&Barbuda",
+                "Argentina",
+                "Armenia",
+                "Aruba",
+                "Australia",
+                "Austria"];
+
+            $('#Country_Name').autocomplete({
+                source: countries
+            });
+
+            $(document).ready(function () {
+                $("#artigoNome").autocomplete({
+                    source: 'api/apiartigos/search'
+                });
             });
         });
     </script>
