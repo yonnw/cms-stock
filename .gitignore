@@ -19,6 +19,9 @@
 *.userprefs
 
 appsettings.json
+cms-stock.pem
+cms-stock.sln
+converted.ppk
 
 # Mono auto generated files
 mono_crash.*
