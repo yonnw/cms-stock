@@ -627,3 +627,5 @@ D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\FuncCentroCustos\Edit.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\FuncCentroCustos\Index.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Funcionarios\Form.cshtml.g.cs
 D:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Form.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Equipamentos\Form.cshtml.g.cs
+C:\gitHub\cms-stock\obj\Debug\netcoreapp3.1\Razor\Views\Funcionarios\Form.cshtml.g.cs
