@@ -33,6 +33,20 @@ namespace cms_stock.Controllers
             }  
         }
 
+        [HttpPost]
+        public JsonResult AutoComplete(string prefix)
+        {
+            var customers = (from artigo in this._context.Artigos
+                             where artigo.Nome.StartsWith(prefix)
+                             select new
+                             {
+                                 label = artigo.Nome,
+                                 val = artigo.Id
+                             }).ToList();
+
+            return Json(customers);
+        }
+
         // GET: Artigos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
