@@ -1,0 +1,57 @@
+﻿@model IEnumerable<cms_stock.Models.Dominio.Entidades.CentroCusto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1>Centros de Custo</h1>
+
+<p>
+    <a asp-action="Create">Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                Fechado ?
+            </th>
+            <th>
+                Artigos
+            </th>
+            <th>
+                Funcionários
+            </th>
+            <th>
+                Equipamentos
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fechada)
+                </td>
+                <th>
+                    @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                </th>
+                <th>
+                    @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                </th>
+                <th>
+                    @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                </th>
+                <th></th>
+            </tr>
+        }
+    </tbody>
+</table>

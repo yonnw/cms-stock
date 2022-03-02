@@ -35,15 +35,28 @@ namespace cms_stock.Controllers
                 ViewBag.erro = "Coloque o email e password";
             }
             var adms = new ContextoCms().Administradores.Where(a => a.Email == email && a.Password == password).ToList();
-            if(adms.Count > 0)
+            if (adms.Count > 0)
             {
-                this.HttpContext.Response.Cookies.Append("adm_cms_dv", adms.First().Id.ToString(), new CookieOptions()
+                if (adms.First().Admin == true)
                 {
-                    Expires = DateTimeOffset.UtcNow.AddMonths(6),
-                    HttpOnly = true
-                });
+                    this.HttpContext.Response.Cookies.Append("adm_cms_dv", adms.First().Id.ToString(), new CookieOptions()
+                    {
+                        Expires = DateTimeOffset.UtcNow.AddMonths(6),
+                        HttpOnly = true
+                    });
 
-                Response.Redirect("/");
+                    Response.Redirect("/");
+                }
+                else
+                {
+                    this.HttpContext.Response.Cookies.Append("user_cms_dv", adms.First().Id.ToString(), new CookieOptions()
+                    {
+                        Expires = DateTimeOffset.UtcNow.AddMonths(6),
+                        HttpOnly = true
+                    });
+
+                    Response.Redirect("/centrocustos/indexuser");
+                }
             }
             else
             {
