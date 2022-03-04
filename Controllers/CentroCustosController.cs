@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
+using cms_stock.Models.Infraestrutura.Autenticacao;
 
 namespace cms_stock.Controllers
 {
@@ -19,12 +20,20 @@ namespace cms_stock.Controllers
             _context = context;
         }
 
+        [Logado]
         // GET: CentroCustos
         public async Task<IActionResult> Index()
         {
             return View(await _context.CentroCustos.ToListAsync());
         }
 
+        // GET: CentroCustos
+        public async Task<IActionResult> IndexUser()
+        {
+            return View(await _context.CentroCustos.ToListAsync());
+        }
+
+        [Logado]
         // GET: CentroCustos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -54,8 +63,8 @@ namespace cms_stock.Controllers
             return View(centroCusto);
         }
 
-            // GET: CentroCustos/Create
-            public IActionResult Create()
+        // GET: CentroCustos/Create
+        public IActionResult Create()
         {
             return View();
         }

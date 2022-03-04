@@ -21,6 +21,7 @@ namespace cms_stock.Models.Dominio.Entidades
         public int ArtigoId { get; set; }
         public virtual Artigo Artigo { get; set; }
 
+        [Required]
         public float Qtd { get; set; }
 
         public float Valor { get; set; }
