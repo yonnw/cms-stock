@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
+using cms_stock.Models.Infraestrutura.Autenticacao;
 
 namespace cms_stock.Controllers
 {
+
     public class ArtigosController : Controller
     {
         private readonly ContextoCms _context;

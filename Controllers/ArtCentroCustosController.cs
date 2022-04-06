@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
 using Microsoft.Data.SqlClient;
+using cms_stock.Models.Infraestrutura.Autenticacao;
 
 namespace cms_stock.Controllers
 {
+
     public class ArtCentroCustosController : Controller
     {
         private readonly ContextoCms _context;
@@ -72,6 +74,14 @@ namespace cms_stock.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd")] ArtCentroCusto artCentroCusto)
         {
+            var a = Request.Form.ToList();
+            var b = a[2].Value.ToString();
+            if (b.Contains(','))
+            {
+                var teste = b.Replace(",", ".");
+                artCentroCusto.Qtd = float.Parse(teste);
+            }
+
             if (ModelState.IsValid)
             {
                 if(artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)

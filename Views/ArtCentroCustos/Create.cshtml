@@ -14,10 +14,11 @@
         <form asp-action="Create" asp-route-CentroCustoId="@ViewBag.ccusto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                Artigo
+                <label asp-for="Artigo" class="control-label"></label>
                 <div class="input-group">
                     <input type="text" id="txtCustomer" name="ArtigoNome" />
                     <input type="hidden" id="hfCustomer" name="ArtigoId" />
+                    <span asp-validation-for="ArtigoId" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -31,6 +32,7 @@
         </form>
     </div>
 </div>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
