@@ -11,7 +11,7 @@ using cms_stock.Models.Infraestrutura.Autenticacao;
 
 namespace cms_stock.Controllers
 {
-    //[Logado]
+    [Logado]
 
     public class AdministradoresController : Controller
     {
