@@ -34,6 +34,7 @@ namespace cms_stock.Controllers
 
         public IActionResult Logout()
         {
+            this.HttpContext.Response.Cookies.Delete("user_cms_dv");
             this.HttpContext.Response.Cookies.Delete("adm_cms_dv");
             return Redirect("/login");
         }
