@@ -27,6 +27,11 @@ namespace cms_stock.Controllers
             return View();
         }
 
+        public IActionResult Table()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {       
             return View();
