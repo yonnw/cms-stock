@@ -5,22 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="content-body">
+    <div class="card">
+        <div class="card-body">
+            <h4>Equipamento</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Create">
+                        @Html.Partial("Form")
+                    </form>
+                </div>
+            </div>
+            <div>
+                <a asp-action="Index">Voltar</a>
+            </div>
 
-<h4>Equipamento</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            @Html.Partial("Form")
-        </form>
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

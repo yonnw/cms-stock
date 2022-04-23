@@ -7,9 +7,7 @@
 <div class="content-body">
     <div class="card">
         <div class="card-body">
-            <h1>Create</h1>
-
-            <h4>Artigo</h4>
+            <h4>Criar Artigo</h4>
             <hr />
             <div class="row">
                 <div class="col-md-4">
@@ -18,11 +16,13 @@
                     </form>
                 </div>
             </div>
-
             <div>
-                <a asp-action="Index">Back to List</a>
+                <a asp-action="Index">Voltar</a>
             </div>
 
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
         </div>
     </div>
 </div>

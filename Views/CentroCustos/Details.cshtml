@@ -2,45 +2,51 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutQuixlab.cshtml";
 }
 
-<h3>Detalhes - @Html.DisplayFor(model => model.Nome)</h3>
-<h5>Total em Artigos: @ViewBag.totalArtigos € - @Html.ActionLink("Artigos", "Index", new { controller = "ArtCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
-<h5>Total em Funcionários: @ViewBag.totalFuncionarios € - @Html.ActionLink("Funcionários", "Index", new { controller = "FuncCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
-<h5>Total em Equipamentos: @ViewBag.totalEquipamentos € - @Html.ActionLink("Equipamentos", "Index", new { controller = "EquiCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
+<div class="content-body">
+    <div class="card">
+        <div class="card-body">
+            <h3>Detalhes - @Html.DisplayFor(model => model.Nome)</h3>
+            <h5>Total em Artigos: @ViewBag.totalArtigos € - @Html.ActionLink("Artigos", "Index", new { controller = "ArtCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
+            <h5>Total em Funcionários: @ViewBag.totalFuncionarios € - @Html.ActionLink("Funcionários", "Index", new { controller = "FuncCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
+            <h5>Total em Equipamentos: @ViewBag.totalEquipamentos € - @Html.ActionLink("Equipamentos", "Index", new { controller = "EquiCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
 
-<div>
-    <h4>Valor total: @Html.DisplayFor(model => model.ValorTotal) €</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataInicial)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataInicial)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataFinal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataFinal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fechada)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fechada)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Observacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Observacao)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            <div>
+                <h4>Valor total: @Html.DisplayFor(model => model.ValorTotal) €</h4>
+                <hr />
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.DataInicial)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.DataInicial)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.DataFinal)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.DataFinal)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Fechada)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Fechada)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Observacao)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Observacao)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                <a asp-action="Index">Voltar</a>
+            </div>
+        </div>
+    </div>
 </div>

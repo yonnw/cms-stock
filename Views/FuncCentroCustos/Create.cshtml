@@ -2,42 +2,48 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutQuixlab.cshtml";
 }
 
-<h1>Adicionar funcionário</h1>
+<div class="content-body">
+    <div class="card">
+        <div class="card-body">
+            <h1>Adicionar funcionário</h1>
+            <h4>Centro de Custo: @ViewBag.nomeccusto</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Create" asp-route-CentroCustoId="@ViewBag.ccusto">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            Funcionário
+                            <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Data" class="control-label"></label>
+                            <input asp-for="Data" class="form-control" />
+                            <span asp-validation-for="Data" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Qtd" class="control-label"></label>
+                            <input asp-for="Qtd" class="form-control" />
+                            <span asp-validation-for="Qtd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-<h4>Centro de Custo: @ViewBag.nomeccusto</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" asp-route-CentroCustoId="@ViewBag.ccusto">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                Funcionário
-                <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
+            <div>
+                <a asp-action="Index">Voltar</a>
             </div>
-            <div class="form-group">
-                <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
-                <span asp-validation-for="Data" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Qtd" class="control-label"></label>
-                <input asp-for="Qtd" class="form-control" />
-                <span asp-validation-for="Qtd" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

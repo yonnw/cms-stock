@@ -212,6 +212,14 @@
                             <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="Index">Lista de Artigos</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-link menu-icon"></i><span class="nav-text">Movimentos Artigos</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="Index">Movimentos</a></li>
+                        </ul>
+                    </li>
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
@@ -354,7 +362,7 @@
     <script src="~/plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="~/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="~/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-
+    @RenderSection("Scripts", required: false)
 </body>
 
 <div class="footer">

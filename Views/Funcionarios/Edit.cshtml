@@ -2,25 +2,30 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutQuixlab.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="content-body">
+    <div class="card">
+        <div class="card-body">
+            <h1>Editar</h1>
+            <h4>Funcionário</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Edit">
+                        @Html.Partial("Form")
+                    </form>
+                </div>
+            </div>
+            <div>
+                <a asp-action="Index">Voltar</a>
+            </div>
 
-<h4>Funcionario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            @Html.Partial("Form")
-        </form>
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
