@@ -80,7 +80,14 @@ namespace cms_stock.Controllers
             {
                 _context.Add(centroCusto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (HttpContext.Response.Cookies.Equals("adm_cms_dv"))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return RedirectToAction(nameof(IndexUser));
+                }
             }
             return View(centroCusto);
         }

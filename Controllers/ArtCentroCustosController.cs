@@ -91,7 +91,15 @@ namespace cms_stock.Controllers
                 }
                 _context.Add(artCentroCusto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "CentroCustos");
+                var cookieAtual = HttpContext.Request.Cookies.Keys.First();
+                if (cookieAtual.Contains("adm_cms_dv"))
+                {
+                    return Redirect("/");
+                }
+                else
+                {
+                    return Redirect("/centrocustos/indexuser");
+                }
             }
             ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);     

@@ -84,7 +84,14 @@ namespace cms_stock.Controllers
             {
                 _context.Add(artigo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (HttpContext.Response.Cookies.Equals("adm_cms_dv"))
+                {
+                    return Redirect("/");
+                }
+                else
+                {
+                    return Redirect("/centrocustos/indexuser");
+                }
             }
             return View(artigo);
         }

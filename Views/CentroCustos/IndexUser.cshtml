@@ -12,21 +12,10 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Nome)
-                        </th>
-                        <th>
-                            Fechado ?
-                        </th>
-                        <th>
-                            Artigos
-                        </th>
-                        <th>
-                            Funcionários
-                        </th>
-                        <th>
-                            Equipamentos
-                        </th>
+                        <th>Nome</th>
+                        <th>Artigos</th>
+                        <th>Funcionários</th>
+                        <th>Equipamentos</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -36,9 +25,6 @@
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Fechada)
                             </td>
                             <th>
                                 @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
