@@ -11,7 +11,6 @@ using cms_stock.Models.Infraestrutura.Autenticacao;
 
 namespace cms_stock.Controllers
 {
-    [Logado]
 
     public class FuncionariosController : Controller
     {
@@ -28,6 +27,7 @@ namespace cms_stock.Controllers
             return View(await _context.Funcionarios.ToListAsync());
         }
 
+        [Logado]
         // GET: Funcionarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -46,6 +46,7 @@ namespace cms_stock.Controllers
             return View(funcionario);
         }
 
+        [Logado]
         // GET: Funcionarios/Create
         public IActionResult Create()
         {
@@ -68,6 +69,7 @@ namespace cms_stock.Controllers
             return View(funcionario);
         }
 
+        [Logado]
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -119,6 +121,7 @@ namespace cms_stock.Controllers
             return View(funcionario);
         }
 
+        [Logado]
         // GET: Funcionarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

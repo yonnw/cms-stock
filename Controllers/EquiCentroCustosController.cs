@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
+using cms_stock.Models.Infraestrutura.Autenticacao;
 
 namespace cms_stock.Controllers
 {
@@ -31,6 +32,7 @@ namespace cms_stock.Controllers
             return View(await contextoCms.ToListAsync());
         }
 
+        [Logado]
         // GET: EquiCentroCustos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -51,6 +53,7 @@ namespace cms_stock.Controllers
             return View(equiCentroCusto);
         }
 
+        [Logado]
         // GET: EquiCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
@@ -86,6 +89,7 @@ namespace cms_stock.Controllers
             return View(equiCentroCusto);
         }
 
+        [Logado]
         // GET: EquiCentroCustos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -146,6 +150,7 @@ namespace cms_stock.Controllers
             return View(equiCentroCusto);
         }
 
+        [Logado]
         // GET: EquiCentroCustos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

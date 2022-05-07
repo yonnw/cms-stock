@@ -49,6 +49,7 @@ namespace cms_stock.Controllers
             return Json(customers);
         }
 
+        [Logado]
         // GET: Artigos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -67,6 +68,7 @@ namespace cms_stock.Controllers
             return View(artigo);
         }
 
+        [Logado]
         // GET: Artigos/Create
         public IActionResult Create()
         {
@@ -89,6 +91,7 @@ namespace cms_stock.Controllers
             return View(artigo);
         }
 
+        [Logado]
         // GET: Artigos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -140,6 +143,7 @@ namespace cms_stock.Controllers
             return View(artigo);
         }
 
+        [Logado]
         // GET: Artigos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

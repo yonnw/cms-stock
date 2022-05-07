@@ -34,7 +34,7 @@ namespace cms_stock.Controllers
             return View(await contextoCms.ToListAsync());
         }
 
-
+        [Logado]
         // GET: ArtCentroCustos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -55,6 +55,7 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
+        [Logado]
         // GET: ArtCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
@@ -106,6 +107,7 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
+        [Logado]
         // GET: ArtCentroCustos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -165,7 +167,7 @@ namespace cms_stock.Controllers
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
             return View(artCentroCusto);
         }
-
+        [Logado]
         // GET: ArtCentroCustos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
