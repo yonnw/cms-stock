@@ -34,7 +34,6 @@ namespace cms_stock.Controllers
             return View(await contextoCms.ToListAsync());
         }
 
-        [Logado]
         // GET: ArtCentroCustos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -55,7 +54,6 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
-        [Logado]
         // GET: ArtCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
@@ -73,15 +71,17 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd")] ArtCentroCusto artCentroCusto)
+        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico")] ArtCentroCusto artCentroCusto)
         {
             var a = Request.Form.ToList();
             var b = a[2].Value.ToString();
             if (b.Contains(','))
             {
-                var teste = b.Replace(",", ".");
-                artCentroCusto.Qtd = float.Parse(teste);
+                var preco = b.Replace(",", ".");
+                artCentroCusto.Qtd = float.Parse(preco);
             }
+
+            ** Validar ArtigoId null and servico =! null
 
             if (ModelState.IsValid)
             {
@@ -107,7 +107,6 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
-        [Logado]
         // GET: ArtCentroCustos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -131,7 +130,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd")] ArtCentroCusto artCentroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico")] ArtCentroCusto artCentroCusto)
         {
             if (id != artCentroCusto.Id)
             {
@@ -167,7 +166,7 @@ namespace cms_stock.Controllers
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
             return View(artCentroCusto);
         }
-        [Logado]
+
         // GET: ArtCentroCustos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

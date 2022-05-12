@@ -23,7 +23,9 @@ namespace cms_stock.Models.Dominio.Entidades
 
         [Required]
         public float Qtd { get; set; }
-
         public float Valor { get; set; }
+        public string Nomeservico { get; set; }
+        public string Observacoes { get; set; }
+        public string Uniservico { get; set; }
     }
 }

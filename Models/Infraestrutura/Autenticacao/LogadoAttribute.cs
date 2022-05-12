@@ -12,8 +12,15 @@ namespace cms_stock.Models.Infraestrutura.Autenticacao
         {
             if(string.IsNullOrEmpty(filterContext.HttpContext.Request.Cookies["adm_cms_dv"]))
             {
-                filterContext.HttpContext.Response.Redirect("/login");
-                return;
+                if (string.IsNullOrEmpty(filterContext.HttpContext.Request.Cookies["user_cms_dv"])){
+                    filterContext.HttpContext.Response.Redirect("/login");
+                    return;
+                }
+                else
+                {
+                    filterContext.HttpContext.Response.Redirect("/centrocustos/indexuser");
+                    return;
+                }
             }
             base.OnActionExecuting(filterContext);
         }

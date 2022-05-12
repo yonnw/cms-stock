@@ -24,9 +24,24 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label asp-for="Nomeservico" class="control-label"></label>
+                            <input asp-for="Nomeservico" class="form-control" />
+                            <span asp-validation-for="Nomeservico" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Uniservico" class="control-label"></label>
+                            <input asp-for="Uniservico" class="form-control" />
+                            <span asp-validation-for="Uniservico" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label asp-for="Qtd" class="control-label"></label>
                             <input asp-for="Qtd" class="col-sm-2 form-control" />
                             <span asp-validation-for="Qtd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Observacoes" class="control-label"></label>
+                            <input asp-for="Observacoes" class="form-control" />
+                            <span asp-validation-for="Observacoes" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-primary" />
