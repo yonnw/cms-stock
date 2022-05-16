@@ -27,5 +27,8 @@ namespace cms_stock.Models.Dominio.Entidades
         public string Nomeservico { get; set; }
         public string Observacoes { get; set; }
         public string Uniservico { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime Data { get; set; }
     }
 }

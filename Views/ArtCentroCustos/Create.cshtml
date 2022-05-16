@@ -12,7 +12,7 @@
             <h4>Centro de Custo: @ViewBag.nomeccusto</h4>
             <hr />
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <form asp-action="Create" asp-route-CentroCustoId="@ViewBag.ccusto">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
@@ -24,27 +24,27 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Nomeservico" class="control-label"></label>
+                            Descrição do Serviço
                             <input asp-for="Nomeservico" class="form-control" />
                             <span asp-validation-for="Nomeservico" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Uniservico" class="control-label"></label>
+                            Unidade do Serviço
                             <input asp-for="Uniservico" class="form-control" />
                             <span asp-validation-for="Uniservico" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Qtd" class="control-label"></label>
+                            Quantidade
                             <input asp-for="Qtd" class="col-sm-2 form-control" />
                             <span asp-validation-for="Qtd" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Observacoes" class="control-label"></label>
+                            Descrição
                             <input asp-for="Observacoes" class="form-control" />
                             <span asp-validation-for="Observacoes" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <input type="submit" value="Criar" class="btn btn-primary" />
                         </div>
                     </form>
                 </div>

@@ -34,6 +34,7 @@ namespace cms_stock.Controllers
             return View(await contextoCms.ToListAsync());
         }
 
+        [Logado]
         // GET: ArtCentroCustos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -74,39 +75,42 @@ namespace cms_stock.Controllers
         public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico")] ArtCentroCusto artCentroCusto)
         {
             var a = Request.Form.ToList();
-            var b = a[2].Value.ToString();
+            var b = a[4].Value.ToString();
+
             if (b.Contains(','))
             {
                 var preco = b.Replace(",", ".");
                 artCentroCusto.Qtd = float.Parse(preco);
             }
 
-            ** Validar ArtigoId null and servico =! null
-
-            if (ModelState.IsValid)
+            if (artCentroCusto.ArtigoId == 0 && artCentroCusto.Nomeservico != null)
             {
-                if(artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
-                {
-                    var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
-                    artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
-                }
-                _context.Add(artCentroCusto);
-                await _context.SaveChangesAsync();
-                var cookieAtual = HttpContext.Request.Cookies.Keys.First();
-                if (cookieAtual.Contains("adm_cms_dv"))
-                {
-                    return Redirect("/");
-                }
-                else
-                {
-                    return Redirect("/centrocustos/indexuser");
-                }
+                artCentroCusto.ArtigoId = 2;
             }
+
+            if(artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
+            {
+                var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
+                artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
+            }
+            _context.Add(artCentroCusto);
+            await _context.SaveChangesAsync();
+            var cookieAtual = HttpContext.Request.Cookies.Keys.First();
+            if (cookieAtual.Contains("adm_cms_dv"))
+            {
+                return Redirect("/");
+            }
+            else
+            {
+                return Redirect("/centrocustos/indexuser");
+            }
+
             ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);     
             return View(artCentroCusto);
         }
 
+        [Logado]
         // GET: ArtCentroCustos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -130,7 +134,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico")] ArtCentroCusto artCentroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,Valor")] ArtCentroCusto artCentroCusto)
         {
             if (id != artCentroCusto.Id)
             {
@@ -141,7 +145,7 @@ namespace cms_stock.Controllers
             {
                 try
                 {
-                    if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
+                    if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.Valor == 0)
                     {
                         var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
                         artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
@@ -167,6 +171,7 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
+        [Logado]
         // GET: ArtCentroCustos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

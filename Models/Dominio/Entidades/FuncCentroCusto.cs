@@ -22,7 +22,7 @@ namespace cms_stock.Models.Dominio.Entidades
         public int FuncionarioId { get; set; }
         public virtual Funcionario Funcionario { get; set; }
 
-        [BindProperty, DataType(DataType.Date)]
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
 
         public float Qtd { get; set; }

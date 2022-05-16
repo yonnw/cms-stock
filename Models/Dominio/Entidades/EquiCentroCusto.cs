@@ -24,5 +24,8 @@ namespace cms_stock.Models.Dominio.Entidades
         public float Qtd { get; set; }
 
         public float Valor { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime Data { get; set; }
     }
 }
