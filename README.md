@@ -16,7 +16,7 @@ Resolver Art Centro Custos - procura
 	Acrescentar procura por centro de custo
 Criar detalhes art centro custos sem o campo valor para os utilizadores sem permissões - Validação pelos cookies
 Alterar os logotipos do Quixlab
-
+Art Centro Custos Index - Colocar a unidade
 
 Validações:
 
