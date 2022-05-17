@@ -55,6 +55,26 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
+        // GET: ArtCentroCustos/DetailsUser/5
+        public async Task<IActionResult> DetailsUser(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var artCentroCusto = await _context.ArtCentroCustos
+                .Include(a => a.Artigo)
+                .Include(a => a.CentroCusto)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (artCentroCusto == null)
+            {
+                return NotFound();
+            }
+
+            return View(artCentroCusto);
+        }
+
         // GET: ArtCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
@@ -88,17 +108,21 @@ namespace cms_stock.Controllers
                 artCentroCusto.ArtigoId = 2;
             }
 
-            if(artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
+            if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
             {
                 var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
                 artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
             }
-            _context.Add(artCentroCusto);
-            await _context.SaveChangesAsync();
-            var cookieAtual = HttpContext.Request.Cookies.Keys.First();
-            if (cookieAtual.Contains("adm_cms_dv"))
+
+            if (artCentroCusto.CentroCustoId >0 && artCentroCusto.ArtigoId >0 && artCentroCusto.Qtd > 0)
             {
-                return Redirect("/");
+                _context.Add(artCentroCusto);
+                await _context.SaveChangesAsync();
+            }
+
+            if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
+            {
+                return RedirectToAction("Index", "CentroCustos", new { controller = "CentroCustos", action = "Index", error = "Error1" });
             }
             else
             {
@@ -106,7 +130,7 @@ namespace cms_stock.Controllers
             }
 
             ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
-            ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);     
+            ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
             return View(artCentroCusto);
         }
 
@@ -193,6 +217,7 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
+        [Logado]
         // POST: ArtCentroCustos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

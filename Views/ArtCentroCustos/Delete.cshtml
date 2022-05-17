@@ -14,22 +14,46 @@
                 <hr />
                 <dl class="row">
                     <dt class = "col-sm-2">
-                        @Html.DisplayNameFor(model => model.CentroCusto)
+                        Centro de Custo
                     </dt>
                     <dd class = "col-sm-10">
                         @Html.DisplayFor(model => model.CentroCusto.Nome)
-                    </dd class>
+                    </dd>
                     <dt class = "col-sm-2">
-                        @Html.DisplayNameFor(model => model.Artigo)
+                        Artigo
                     </dt>
                     <dd class = "col-sm-10">
                         @Html.DisplayFor(model => model.Artigo.Nome)
-                    </dd class>
+                    </dd>
                     <dt class = "col-sm-2">
-                        @Html.DisplayNameFor(model => model.Qtd)
+                        Serviço
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Nomeservico)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Unidade
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Uniservico)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Quantidade
                     </dt>
                     <dd class = "col-sm-10">
                         @Html.DisplayFor(model => model.Qtd)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Valor
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Valor)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Observações
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Observacoes)
                     </dd>
                 </dl>
     

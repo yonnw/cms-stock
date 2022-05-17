@@ -22,8 +22,9 @@ namespace cms_stock.Controllers
 
         [Logado]
         // GET: CentroCustos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string error)
         {
+            ViewBag.error = error;
             return View(await _context.CentroCustos.ToListAsync());
         }
 
@@ -80,7 +81,7 @@ namespace cms_stock.Controllers
             {
                 _context.Add(centroCusto);
                 await _context.SaveChangesAsync();
-                if (HttpContext.Response.Cookies.Equals("adm_cms_dv"))
+                if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
                 {
                     return RedirectToAction(nameof(Index));
                 }

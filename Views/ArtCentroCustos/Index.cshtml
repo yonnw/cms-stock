@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <h1>Movimentos de Artigos</h1>
-            <form asp-controller="ArtCentroCusto" asp-action="Index">
+            <form asp-controller="ArtCentroCustos" asp-action="Index">
                 <div class="input-group">
                     <input type="search" id="artigoNome" name="artigoNome" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                     <button type="submit" class="btn btn-outline-primary">search</button>
@@ -45,7 +45,16 @@
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                @{
+                                    if (Context.Request.Cookies["adm_cms_dv"] != null)
+                                    {
+                                        <a asp-action="Details" asp-route-id="@item.Id">Details |</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="DetailsUser" asp-route-id="@item.Id">Details |</a>
+                                    }
+                                }                          
                                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>

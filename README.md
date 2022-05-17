@@ -11,15 +11,15 @@ Database:
 Centro Custo criar valor de venda
 
 Views:
-Details - Art Centro Custos acrescentar campos
 Resolver Art Centro Custos - procura
 	Acrescentar procura por centro de custo
-Criar detalhes art centro custos sem o campo valor para os utilizadores sem permissões - Validação pelos cookies
+
 Alterar os logotipos do Quixlab
+ArtCentroCusto Index - colocar UNIDADE e linhas a vermelho caso o valor seja igual a 0.
 
 
 Validações:
-
+ArtCentroCusto - redirect apos criado com sucesso para admin e user , e redirect sem sucesso passar erro para admin e user
 
 WARNINGS / NEW INSTALLATIONS:
 Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 86
