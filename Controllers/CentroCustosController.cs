@@ -29,8 +29,9 @@ namespace cms_stock.Controllers
         }
 
         // GET: CentroCustos
-        public async Task<IActionResult> IndexUser()
+        public async Task<IActionResult> IndexUser(string error)
         {
+            ViewBag.error = error;
             return View(await _context.CentroCustos.ToListAsync());
         }
 
