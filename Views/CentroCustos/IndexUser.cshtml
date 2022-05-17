@@ -8,7 +8,11 @@
 <div class="content-body">
     <div class="card">
         <div class="card-body">
-            <h1>Centros de Custo</h1>
+            <h4 class="card-title">Centros de Custo</h4>
+            <div class="text-danger">
+                @ViewBag.error
+            </div>
+            <br />
             <table class="table">
                 <thead>
                     <tr>
@@ -22,22 +26,22 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <th>
-                                @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
-                            </th>
-                            <th>
-                                @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
-                            </th>
-                            <th>
-                                @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
-                            </th>
-                            <th></th>
-                        </tr>
-                    }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <th>
+                @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+            </th>
+            <th>
+                @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+            </th>
+            <th>
+                @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+            </th>
+            <th></th>
+        </tr>
+}
                 </tbody>
             </table>
         </div>

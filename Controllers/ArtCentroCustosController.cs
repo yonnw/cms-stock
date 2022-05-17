@@ -105,10 +105,12 @@ namespace cms_stock.Controllers
 
             if (artCentroCusto.ArtigoId == 0 && artCentroCusto.Nomeservico != null)
             {
+                //Artigo de Serviço
                 artCentroCusto.ArtigoId = 2;
             }
 
-            if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
+            //Alterar o id do Artigo de Serviço
+            if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.ArtigoId != 2)
             {
                 var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
                 artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
@@ -118,25 +120,56 @@ namespace cms_stock.Controllers
             {
                 _context.Add(artCentroCusto);
                 await _context.SaveChangesAsync();
+
+                if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
+                {
+                    ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
+                    ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
+                    return RedirectToAction("Index", "CentroCustos");
+                }
+                else
+                {
+                    ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
+                    ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
+                    return RedirectToAction("IndexUser", "CentroCustos");
+                }
             }
 
             if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
             {
-                return RedirectToAction("Index", "CentroCustos", new { controller = "CentroCustos", action = "Index", error = "Error1" });
+                ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
+                ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
+                return RedirectToAction("Index", "CentroCustos", new { controller = "CentroCustos", action = "Index", error = "Não foi possível gravar, tente novamente." });
             }
             else
             {
-                return Redirect("/centrocustos/indexuser");
+                ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
+                ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
+                return RedirectToAction("IndexUser", "CentroCustos", new { controller = "CentroCustos", action = "Index", error = "Não foi possível gravar, tente novamente." });
             }
-
-            ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
-            ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
-            return View(artCentroCusto);
         }
 
         [Logado]
         // GET: ArtCentroCustos/Edit/5
         public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var artCentroCusto = await _context.ArtCentroCustos.FindAsync(id);
+            if (artCentroCusto == null)
+            {
+                return NotFound();
+            }
+            ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
+            ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
+            return View(artCentroCusto);
+        }
+
+        // GET: ArtCentroCustos/Edit/5
+        public async Task<IActionResult> EditUser(int? id)
         {
             if (id == null)
             {

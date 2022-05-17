@@ -15,11 +15,12 @@ Resolver Art Centro Custos - procura
 	Acrescentar procura por centro de custo
 
 Alterar os logotipos do Quixlab
-ArtCentroCusto Index - colocar UNIDADE e linhas a vermelho caso o valor seja igual a 0.
+ArtCentroCusto Index - colocar UNIDADE(separar em Uniservico e Artigo.Uni) e linhas a vermelho caso o valor seja igual a 0.
+ArtCentroCust Create - adicionar campo valor para cookie admin
 
 
 Validações:
-ArtCentroCusto - redirect apos criado com sucesso para admin e user , e redirect sem sucesso passar erro para admin e user
+
 
 WARNINGS / NEW INSTALLATIONS:
 Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 86

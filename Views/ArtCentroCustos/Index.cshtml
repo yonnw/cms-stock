@@ -35,7 +35,16 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                @if (item.Valor > 0)
+                                {
+                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                }
+                                else
+                                {
+                                <div class="text-danger">
+                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                </div>
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Artigo.Nome)
@@ -44,17 +53,20 @@
                                 @Html.DisplayFor(modelItem => item.Qtd)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                @{
-                                    if (Context.Request.Cookies["adm_cms_dv"] != null)
-                                    {
-                                        <a asp-action="Details" asp-route-id="@item.Id">Details |</a>
-                                    }
-                                    else
-                                    {
-                                        <a asp-action="DetailsUser" asp-route-id="@item.Id">Details |</a>
-                                    }
-                                }                          
+                                @{ if (Context.Request.Cookies["adm_cms_dv"] != null)
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a> }
+                                else
+                                {
+                                    <a asp-action="EditUser" asp-route-id="@item.Id">Edit |</a> } 
+                                }
+                                @{ if (Context.Request.Cookies["adm_cms_dv"] != null)
+                                {
+                                <a asp-action="Details" asp-route-id="@item.Id">Details |</a> }
+                                else
+                                {
+                                    <a asp-action="DetailsUser" asp-route-id="@item.Id">Details |</a> } 
+                                }
                                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>
