@@ -11,16 +11,12 @@ Database:
 Centro Custo criar valor de venda
 
 Views:
-Resolver Art Centro Custos - procura
-	Acrescentar procura por centro de custo
-
 Alterar os logotipos do Quixlab
-ArtCentroCusto Index - colocar UNIDADE(separar em Uniservico e Artigo.Uni) e linhas a vermelho caso o valor seja igual a 0.
-ArtCentroCust Create - adicionar campo valor para cookie admin
-
+Identificar os campos obrigatórios
 
 Validações:
-
+Art Centro Custo - criar view para user normal sem o campo valor
+				 - criar index para user normal sem valores e btn apagar
 
 WARNINGS / NEW INSTALLATIONS:
-Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 86
+Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 120 e 124

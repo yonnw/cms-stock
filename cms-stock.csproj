@@ -4171,6 +4171,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="3.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="X.PagedList" Version="8.4.3" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.3" />
   </ItemGroup>
 
   <ItemGroup>

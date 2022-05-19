@@ -8,7 +8,7 @@
 <div class="content-body">
     <div class="card">
         <div class="card-body">
-            <h1>Adicionar artigo</h1>
+            <h1>Artigo | Serviço</h1>
             <h4>Centro de Custo: @ViewBag.nomeccusto</h4>
             <hr />
             <div class="row">
@@ -16,31 +16,66 @@
                     <form asp-action="Create" asp-route-CentroCustoId="@ViewBag.ccusto">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
-                            <label asp-for="Artigo" class="control-label"></label>
-                            <div class="input-group">
-                                <input type="text" id="txtCustomer" name="ArtigoNome" class="form-control"/>
-                                <input type="hidden" id="hfCustomer" name="ArtigoId" class="form-control"/>
-                                <span asp-validation-for="ArtigoId" class="text-danger"></span>
-                            </div>
+                            Data (Obrigatório)
+                            <input asp-for="Data" class="form-control" type="date"/>
+                            <span asp-validation-for="Data" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
-                            Descrição do Serviço
-                            <input asp-for="Nomeservico" class="form-control" />
-                            <span asp-validation-for="Nomeservico" class="text-danger"></span>
-                        </div>
+                        <table class="table warning-table-bordered">
+                            <thead>
+                                <p>Obrigatório preencher Artigo ou Serviço:</p>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td>
+                                  <div class="form-group">
+                                        Artigo
+                                        <div class="input-group">
+                                            <input type="text" id="txtCustomer" name="ArtigoNome" class="form-control" />
+                                            <input type="hidden" id="hfCustomer" name="ArtigoId" class="form-control" />
+                                            <span asp-validation-for="ArtigoId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        Serviço
+                                        <input asp-for="Nomeservico" class="form-control" />
+                                        <span asp-validation-for="Nomeservico" class="text-danger"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                         <div class="form-group">
                             Unidade
                             <input asp-for="Uniservico" class="form-control" />
                             <span asp-validation-for="Uniservico" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            Quantidade
-                            <input asp-for="Qtd" class="col-sm-2 form-control" />
-                            <span asp-validation-for="Qtd" class="text-danger"></span>
-                        </div>
+                        </div>    
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <td>
+                                  <div class="form-group">
+                                        Quantidade (Obrigatório)
+                                        <input asp-for="Qtd" class="form-control" />
+                                        <span asp-validation-for="Qtd" class="text-danger"></span>
+                                    </div>
+                              </td>
+                              <td>
+                                  <div class="form-group">
+                                        Valor Total
+                                        <input asp-for="Valor" class="form-control" />
+                                        <span asp-validation-for="Valor" class="text-danger"></span>
+                                    </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                         <div class="form-group">
                             Descrição
-                            <input asp-for="Observacoes" class="form-control" />
+                            <input asp-for="Observacoes" class="text form-control" />
                             <span asp-validation-for="Observacoes" class="text-danger"></span>
                         </div>
                         <div class="form-group">

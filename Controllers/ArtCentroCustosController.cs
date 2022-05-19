@@ -9,6 +9,7 @@ using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
 using Microsoft.Data.SqlClient;
 using cms_stock.Models.Infraestrutura.Autenticacao;
+using X.PagedList;
 
 namespace cms_stock.Controllers
 {
@@ -22,16 +23,47 @@ namespace cms_stock.Controllers
             _context = context;
         }
 
-        // GET: ArtCentroCustos
-        public async Task<IActionResult> Index(int? CCustoid)
+        [Logado]
+        public async Task<IActionResult> Index(int? CCustoid, int? page, string searchString)
         {
+            var pageNumber = page ?? 1;
+            int pageSize = 15;
+
             if (CCustoid > 0)
             {
-                var contextoCms1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid);
-                return View(await contextoCms1.ToListAsync());
+                var onePageOfArtCentroCustos1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                return View(onePageOfArtCentroCustos1);
             }
-            var contextoCms = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto);
-            return View(await contextoCms.ToListAsync());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var artCusto = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.Nomeservico.Contains(searchString) || i.Artigo.Nome.Contains(searchString) || i.CentroCusto.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                return View(artCusto);
+            }
+
+            var onePageOfArtCentroCustos = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).ToPagedList(pageNumber, pageSize);
+            return View(onePageOfArtCentroCustos);
+        }
+
+        public async Task<IActionResult> IndexUser(int? CCustoid, int? page, string searchString)
+        {
+            var pageNumber = page ?? 1;
+            int pageSize = 15;
+
+            if (CCustoid > 0)
+            {
+                var onePageOfArtCentroCustos1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                return View(onePageOfArtCentroCustos1);
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var artCusto = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.Nomeservico.Contains(searchString) || i.Artigo.Nome.Contains(searchString) || i.CentroCusto.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                return View(artCusto);
+            }
+
+            var onePageOfArtCentroCustos = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).ToPagedList(pageNumber, pageSize);
+            return View(onePageOfArtCentroCustos);
         }
 
         [Logado]
@@ -75,6 +107,7 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
+        [Logado]
         // GET: ArtCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
@@ -92,10 +125,11 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico")] ArtCentroCusto artCentroCusto)
+        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,Data")] ArtCentroCusto artCentroCusto)
         {
             var a = Request.Form.ToList();
-            var b = a[4].Value.ToString();
+            //Atenção ao criar campos
+            var b = a[5].Value.ToString();
 
             if (b.Contains(','))
             {
@@ -116,7 +150,7 @@ namespace cms_stock.Controllers
                 artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
             }
 
-            if (artCentroCusto.CentroCustoId >0 && artCentroCusto.ArtigoId >0 && artCentroCusto.Qtd > 0)
+            if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.Qtd > 0)
             {
                 _context.Add(artCentroCusto);
                 await _context.SaveChangesAsync();
@@ -191,7 +225,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,Valor")] ArtCentroCusto artCentroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,Valor,Data")] ArtCentroCusto artCentroCusto)
         {
             if (id != artCentroCusto.Id)
             {
@@ -202,7 +236,7 @@ namespace cms_stock.Controllers
             {
                 try
                 {
-                    if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.Valor == 0)
+                    if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.ArtigoId != 2 && artCentroCusto.Valor == 0)
                     {
                         var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
                         artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
