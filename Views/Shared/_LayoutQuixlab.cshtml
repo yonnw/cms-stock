@@ -87,9 +87,20 @@
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-link menu-icon"></i><span class="nav-text">Movimentos Artigos</span>
                         </a>
-                        <ul aria-expanded="false">
-                            <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="Index">Movimentos</a></li>
-                        </ul>
+                        @{
+                            if (Context.Request.Cookies["adm_cms_dv"] != null)
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="Index">Movimentos</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="IndexUser">Movimentos</a></li>
+                                </ul>
+                            }
+                        }
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">

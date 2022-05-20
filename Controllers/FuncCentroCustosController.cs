@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
 using cms_stock.Models.Infraestrutura.Autenticacao;
+using System.Text.RegularExpressions;
 
 namespace cms_stock.Controllers
 {
@@ -63,6 +64,9 @@ namespace cms_stock.Controllers
 
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome");
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "Id", "Nome");
+
+            ViewData["Funcionarios"] = _context.Funcionarios.ToList();            
+
             return View();
         }
 
@@ -73,20 +77,35 @@ namespace cms_stock.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd")] FuncCentroCusto funcCentroCusto)
         {
-            if (ModelState.IsValid)
+            foreach (string key in Request.Form.Keys)
             {
-                if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0)
+                if (key.StartsWith("Id"))
                 {
-                    var funcionario = _context.Funcionarios.Where(i => i.Id == funcCentroCusto.FuncionarioId).ToList();
-                    funcCentroCusto.Valor = funcionario[0].Valordia * funcCentroCusto.Qtd;
+                    if(funcCentroCusto.Id != 0)
+                    {
+                        funcCentroCusto.Id = 0;
+                    }
+
+                    var apenasDigitos = new Regex(@"[^\d]");
+                    var b = apenasDigitos.Replace(key, "");
+                    funcCentroCusto.FuncionarioId = Convert.ToInt32(b);
+
+                    if (ModelState.IsValid)
+                    {
+                        if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0)
+                        {
+                            var funcionario = _context.Funcionarios.Where(i => i.Id == funcCentroCusto.FuncionarioId).ToList();
+                            funcCentroCusto.Valor = funcionario[0].Valordia * funcCentroCusto.Qtd;
+                        }
+                        _context.Add(funcCentroCusto);
+                        await _context.SaveChangesAsync();
+                    }
                 }
-                _context.Add(funcCentroCusto);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "CentroCustos");
             }
+
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", funcCentroCusto.CentroCustoId);
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "Id", "Nome", funcCentroCusto.FuncionarioId);
-            return View(funcCentroCusto);
+            return RedirectToAction("Index", "CentroCustos");
         }
 
         [Logado]

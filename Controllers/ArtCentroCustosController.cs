@@ -107,7 +107,6 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
-        [Logado]
         // GET: ArtCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
@@ -255,7 +254,18 @@ namespace cms_stock.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
+                {
+                    ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
+                    ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
+                    return RedirectToAction("Index", "ArtCentroCustos");
+                }
+                else
+                {
+                    ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
+                    ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
+                    return RedirectToAction("IndexUser", "ArtCentroCustos");
+                }
             }
             ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);

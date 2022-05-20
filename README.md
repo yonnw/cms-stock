@@ -8,15 +8,20 @@ SqlCommand cmd = new SqlCommand(sql, con, transaction);
 Situações a resolver:
 
 Database:
-Centro Custo criar valor de venda
+Centro Custo	- vfinalvenda
+				- nomecompleto
+				- referencia 
+				- lucroeuros
+				- lucroperc
+				- vorcamento
 
 Views:
 Alterar os logotipos do Quixlab
 Identificar os campos obrigatórios
 
 Validações:
-Art Centro Custo - criar view para user normal sem o campo valor
-				 - criar index para user normal sem valores e btn apagar
+Centro de Custo - colocar lista de artigos | equipamentos | pessoal na rota de detalhes
+
 
 WARNINGS / NEW INSTALLATIONS:
 Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 120 e 124
