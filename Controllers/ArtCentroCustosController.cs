@@ -139,11 +139,11 @@ namespace cms_stock.Controllers
             if (artCentroCusto.ArtigoId == 0 && artCentroCusto.Nomeservico != null)
             {
                 //Artigo de Serviço
-                artCentroCusto.ArtigoId = 2;
+                artCentroCusto.ArtigoId = 1048;
             }
 
             //Alterar o id do Artigo de Serviço
-            if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.ArtigoId != 2)
+            if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.ArtigoId != 1048)
             {
                 var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
                 artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
