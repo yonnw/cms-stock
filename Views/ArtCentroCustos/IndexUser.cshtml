@@ -10,15 +10,15 @@
     <div class="card">
         <div class="card-body">
             <h1>Movimentos de Artigos | Serviços</h1>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+            @Html.PagedListPager(Model, page => Url.Action("IndexUser", new { page }),
                 new X.PagedList.Web.Common.PagedListRenderOptions {
                 LiElementClasses = new string[] { "page-item" },
                 PageClasses = new string[] { "page-link" }
                 })
-            <form asp-controller="ArtCentroCustos" asp-action="Index">
+            <form asp-controller="ArtCentroCustos" asp-action="IndexUser">
                 <div class="input-group">
                     <p>
-                        Centro de Custo | Artigo | Serviço: <input type="text" name="SearchString" />
+                        Centro de Custo | Artigo | Serviço: <input type="text" name="searchString" />
                         <input type="submit" value="Procurar" />
                     </p>
                 </div>

@@ -138,7 +138,7 @@ namespace cms_stock.Controllers
 
             if (artCentroCusto.ArtigoId == 0 && artCentroCusto.Nomeservico != null)
             {
-                //Artigo de Serviço
+                //Artigo de Serviço 1048 Mota
                 artCentroCusto.ArtigoId = 1048;
             }
 

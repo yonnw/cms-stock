@@ -10,12 +10,12 @@
     <div class="card">
         <div class="card-body">
             <h1>Registos Funcionários</h1>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+            @Html.PagedListPager(Model, page => Url.Action("IndexUser", new { page }),
                 new X.PagedList.Web.Common.PagedListRenderOptions {
                 LiElementClasses = new string[] { "page-item" },
                 PageClasses = new string[] { "page-link" }
                 })
-            <form asp-controller="FuncCentroCustos" asp-action="Index">
+            <form asp-controller="FuncCentroCustos" asp-action="IndexUser">
                 <div class="input-group">
                     <p>
                         Funcionário: <input type="text" name="SearchString" />
@@ -35,12 +35,6 @@
                         <th>
                             Funcionário
                         </th>
-                        <th>
-                            Qtd
-                        </th>
-                        <th>
-                            Valor
-                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -57,15 +51,7 @@
                                 @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                             </td>
                             <td>
-                                @String.Format("{0:#,###.00€}", item.Qtd)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Valor)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+                                <a asp-action="EditUser" asp-route-id="@item.Id">Editar</a>
                             </td>
                         </tr>
                     }

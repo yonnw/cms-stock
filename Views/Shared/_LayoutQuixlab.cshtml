@@ -46,19 +46,18 @@
         </div>
         <div class="header">    
             <div class="header-content clearfix">
-                
                 <div class="nav-control">
                     <div class="hamburger">
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
-                </div>
+                </div>  
                 <div class="header-right">
-                    <ul class="clearfix">
-                        <li class="icons dropdown">
+                    <ul class="clearfix">        
+                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
                                 <img src="~/images/user/1.png" height="40" width="40" alt="">
-                            </div>
+                            </div>                         
                             <div class="drop-down dropdown-profile   dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
@@ -79,9 +78,20 @@
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-link menu-icon"></i><span class="nav-text">Artigos</span>
                         </a>
-                        <ul aria-expanded="false">
-                            <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="Index">Lista de Artigos</a></li>
-                        </ul>
+                        @{
+                            if (Context.Request.Cookies["adm_cms_dv"] != null)
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="Index">Lista de Artigos</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="IndexUser">Lista de Artigos</a></li>
+                                </ul>
+                            }
+                        }
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -113,10 +123,21 @@
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">Movimentos Funcionários</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="Index">Movimentos</a></li>
-                        </ul>
+                        </a>                        
+                        @{
+                            if (Context.Request.Cookies["adm_cms_dv"] != null)
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="Index">Movimentos</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="IndexUser">Movimentos</a></li>
+                                </ul>
+                            }
+                        }
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">

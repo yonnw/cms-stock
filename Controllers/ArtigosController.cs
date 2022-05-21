@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
 using cms_stock.Models.Infraestrutura.Autenticacao;
+using X.PagedList;
 
 namespace cms_stock.Controllers
 {
@@ -21,18 +22,40 @@ namespace cms_stock.Controllers
             _context = context;
         }
 
+        [Logado]
         // GET: Artigos
-        public async Task<IActionResult> Index(string artigoNome)
+        public async Task<IActionResult> Index(string artigoNome, int? page)
         {
-            if(artigoNome != null)
+            var pageNumber = page ?? 1;
+            int pageSize = 15;
+
+            if (!String.IsNullOrEmpty(artigoNome))
             {
-                var artigos = _context.Artigos.Where(a => a.Nome.Contains(artigoNome)).ToList();
+                var artigos = _context.Artigos.Where(a => a.Nome.Contains(artigoNome)).ToPagedList(pageNumber, pageSize);
                 return View(artigos);
             }
             else
             {
-                return View(await _context.Artigos.ToListAsync());
+                var artigos = _context.Artigos.ToPagedList(pageNumber, pageSize);
+                return View(artigos);
             }  
+        }
+
+        public async Task<IActionResult> IndexUser(string artigoNome, int? page)
+        {
+            var pageNumber = page ?? 1;
+            int pageSize = 15;
+
+            if (!String.IsNullOrEmpty(artigoNome))
+            {
+                var artigos = _context.Artigos.Where(a => a.Nome.Contains(artigoNome)).ToPagedList(pageNumber, pageSize);
+                return View(artigos);
+            }
+            else
+            {
+                var artigos = _context.Artigos.ToPagedList(pageNumber, pageSize);
+                return View(artigos);
+            }
         }
 
         [HttpPost]

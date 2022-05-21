@@ -1,4 +1,5 @@
-﻿@model IEnumerable<cms_stock.Models.Dominio.Entidades.CentroCusto>
+﻿@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<cms_stock.Models.Dominio.Entidades.CentroCusto>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +14,20 @@
                     @ViewBag.error
                 </div>
                 <br />
-                <p><a asp-action="Create">Novo</a></p>
+                <p><a asp-action="Create">Criar</a></p>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                new X.PagedList.Web.Common.PagedListRenderOptions {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+                })  
+                <form asp-controller="CentroCustos" asp-action="Index">
+                    <div class="input-group">
+                        <p>
+                            Centro de Custo: <input type="text" name="searchString" />
+                            <input type="submit" value="Procurar" />
+                        </p>
+                    </div>
+                </form>
                 <div class="table-responsive">
                     <table class="table header-border">
                         <thead>
@@ -51,6 +65,16 @@
                             </tbody>
                     </table>
                 </div>
+                @section Scripts {
+                    <script>
+                        // Workaround to fix style of text for showing items .. through ..
+                        // Problem related to Boostrap 4 according to issue in link below
+                        // https://github.com/dncuug/X.PagedList/issues/127
+                        $(document).ready(function () {
+                            $('ul.pagination > li.disabled > a').addClass('page-link');
+                        });
+                    </script>
+                }
             </div>
         </div>
 </div>

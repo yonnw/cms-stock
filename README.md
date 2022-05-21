@@ -21,6 +21,7 @@ Identificar os campos obrigatórios
 
 Validações:
 Centro de Custo - colocar lista de artigos | equipamentos | pessoal na rota de detalhes
+FuncCentrodeCustos - Se o ModelState for invalid mandar o erro para Index - Centro Custos
 
 
 WARNINGS / NEW INSTALLATIONS:

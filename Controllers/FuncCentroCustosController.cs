@@ -9,6 +9,7 @@ using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
 using cms_stock.Models.Infraestrutura.Autenticacao;
 using System.Text.RegularExpressions;
+using X.PagedList;
 
 namespace cms_stock.Controllers
 {
@@ -21,16 +22,52 @@ namespace cms_stock.Controllers
             _context = context;
         }
 
+        [Logado]
         // GET: FuncCentroCustos
-        public async Task<IActionResult> Index(int? CCustoid)
+        public async Task<IActionResult> Index(int? CCustoid, string searchString, int? page)
         {
+            var pageNumber = page ?? 1;
+            int pageSize = 15;
+
             if (CCustoid > 0)
             {
-                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid);
-                return View(await contextoCms1.ToListAsync());
+                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                return View(contextoCms1);
             }
-            var contextoCms = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario);
-            return View(await contextoCms.ToListAsync());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(f => f.Funcionario.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                return View(funcCentroCustos);
+            }
+            else
+            {
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).ToPagedList(pageNumber, pageSize);
+                return View(funcCentroCustos);
+            }
+        }
+
+        public async Task<IActionResult> IndexUser(int? CCustoid, string searchString, int? page)
+        {
+            var pageNumber = page ?? 1;
+            int pageSize = 15;
+
+            if (CCustoid > 0)
+            {
+                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                return View(contextoCms1);
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(f => f.Funcionario.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                return View(funcCentroCustos);
+            }
+            else
+            {
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).ToPagedList(pageNumber, pageSize);
+                return View(funcCentroCustos);
+            }
         }
 
         [Logado]
@@ -54,7 +91,6 @@ namespace cms_stock.Controllers
             return View(funcCentroCusto);
         }
 
-        [Logado]
         // GET: FuncCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
@@ -111,6 +147,23 @@ namespace cms_stock.Controllers
         [Logado]
         // GET: FuncCentroCustos/Edit/5
         public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var funcCentroCusto = await _context.FuncCentroCustos.FindAsync(id);
+            if (funcCentroCusto == null)
+            {
+                return NotFound();
+            }
+            ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", funcCentroCusto.CentroCustoId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "Id", "Nome", funcCentroCusto.FuncionarioId);
+            return View(funcCentroCusto);
+        }
+
+        public async Task<IActionResult> EditUser(int? id)
         {
             if (id == null)
             {

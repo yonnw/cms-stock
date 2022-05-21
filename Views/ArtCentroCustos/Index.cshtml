@@ -18,7 +18,7 @@
             <form asp-controller="ArtCentroCustos" asp-action="Index">
                 <div class="input-group">
                     <p>
-                        Centro de Custo | Artigo | Serviço: <input type="text" name="SearchString" />
+                        Centro de Custo | Artigo | Serviço: <input type="text" name="searchString" />
                         <input type="submit" value="Procurar" />
                     </p>
                 </div>
@@ -111,14 +111,6 @@
                       rel="stylesheet">
                 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
                 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-                <script>
-                    $(document).ready(function () {
-                        $("#artigoNome").autocomplete({
-                            source: 'api/apiartigos/search'
-                        });
-                    });
-                </script>
 
                 <script>
                     // Workaround to fix style of text for showing items .. through ..

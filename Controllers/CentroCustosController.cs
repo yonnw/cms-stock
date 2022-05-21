@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
 using cms_stock.Models.Infraestrutura.Autenticacao;
+using X.PagedList;
 
 namespace cms_stock.Controllers
 {
@@ -22,17 +23,43 @@ namespace cms_stock.Controllers
 
         [Logado]
         // GET: CentroCustos
-        public async Task<IActionResult> Index(string error)
+        public async Task<IActionResult> Index(string error, string searchString, int? page)
         {
             ViewBag.error = error;
-            return View(await _context.CentroCustos.ToListAsync());
+
+            var pageNumber = page ?? 1;
+            int pageSize = 10;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var centroCustos = _context.CentroCustos.Where(a => a.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                return View(centroCustos);
+            }
+            else
+            {
+                var centroCustos = _context.CentroCustos.ToPagedList(pageNumber, pageSize);
+                return View(centroCustos);
+            }
         }
 
         // GET: CentroCustos
-        public async Task<IActionResult> IndexUser(string error)
+        public async Task<IActionResult> IndexUser(string error, string searchString, int? page)
         {
             ViewBag.error = error;
-            return View(await _context.CentroCustos.ToListAsync());
+
+            var pageNumber = page ?? 1;
+            int pageSize = 10;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var centroCustos = _context.CentroCustos.Where(a => a.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                return View(centroCustos);
+            }
+            else
+            {
+                var centroCustos = _context.CentroCustos.ToPagedList(pageNumber, pageSize);
+                return View(centroCustos);
+            }
         }
 
         [Logado]
