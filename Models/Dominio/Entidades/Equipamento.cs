@@ -20,5 +20,8 @@ namespace cms_stock.Models.Dominio.Entidades
 
         [Required]
         public float PCusto { get; set; }
+
+        [Required]
+        public float Valordia { get; set; }
     }
 }

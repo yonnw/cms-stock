@@ -26,6 +26,7 @@ namespace cms_stock.Models.Dominio.Entidades
         public float Valor { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Data { get; set; }
     }
 }

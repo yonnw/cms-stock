@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
+using cms_stock.Models.Infraestrutura.Autenticacao;
 
 namespace cms_stock.Controllers
 {
@@ -25,6 +26,7 @@ namespace cms_stock.Controllers
             return View(await _context.Equipamentos.ToListAsync());
         }
 
+        [Logado]
         // GET: Equipamentos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +45,7 @@ namespace cms_stock.Controllers
             return View(equipamento);
         }
 
+        [Logado]
         // GET: Equipamentos/Create
         public IActionResult Create()
         {
@@ -65,6 +68,7 @@ namespace cms_stock.Controllers
             return View(equipamento);
         }
 
+        [Logado]
         // GET: Equipamentos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -116,6 +120,7 @@ namespace cms_stock.Controllers
             return View(equipamento);
         }
 
+        [Logado]
         // GET: Equipamentos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

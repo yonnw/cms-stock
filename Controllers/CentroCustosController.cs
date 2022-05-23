@@ -84,6 +84,10 @@ namespace cms_stock.Controllers
             ViewBag.totalFuncionarios = totalFuncionarios;
             ViewBag.totalEquipamentos = totalEquipamentos;
 
+            ViewData["Funcionarios"] = _context.FuncCentroCustos.Include(f => f.Funcionario).Where(i => i.CentroCusto.Id == centroCusto.Id).OrderByDescending(d => d.Data).ToList();
+            ViewData["Equipamentos"] = _context.EquiCentroCustos.Include(e => e.Equipamento).Where(i => i.CentroCusto.Id == centroCusto.Id).OrderByDescending(d => d.Data).ToList();
+            ViewData["Artigos"] = _context.ArtCentroCustos.Include(a => a.Artigo).Where(i => i.CentroCusto.Id == centroCusto.Id).OrderByDescending(d => d.Data).ToList();
+
             if (centroCusto == null)
             {
                 return NotFound();

@@ -31,17 +31,17 @@ namespace cms_stock.Controllers
 
             if (CCustoid > 0)
             {
-                var onePageOfArtCentroCustos1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                var onePageOfArtCentroCustos1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(onePageOfArtCentroCustos1);
             }
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var artCusto = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.Nomeservico.Contains(searchString) || i.Artigo.Nome.Contains(searchString) || i.CentroCusto.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                var artCusto = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.Nomeservico.Contains(searchString) || i.Artigo.Nome.Contains(searchString) || i.CentroCusto.Nome.Contains(searchString)).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(artCusto);
             }
 
-            var onePageOfArtCentroCustos = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).ToPagedList(pageNumber, pageSize);
+            var onePageOfArtCentroCustos = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
             return View(onePageOfArtCentroCustos);
         }
 
@@ -52,17 +52,17 @@ namespace cms_stock.Controllers
 
             if (CCustoid > 0)
             {
-                var onePageOfArtCentroCustos1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                var onePageOfArtCentroCustos1 = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.CentroCustoId == CCustoid).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(onePageOfArtCentroCustos1);
             }
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var artCusto = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.Nomeservico.Contains(searchString) || i.Artigo.Nome.Contains(searchString) || i.CentroCusto.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                var artCusto = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).Where(i => i.Nomeservico.Contains(searchString) || i.Artigo.Nome.Contains(searchString) || i.CentroCusto.Nome.Contains(searchString)).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(artCusto);
             }
 
-            var onePageOfArtCentroCustos = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).ToPagedList(pageNumber, pageSize);
+            var onePageOfArtCentroCustos = _context.ArtCentroCustos.Include(a => a.Artigo).Include(a => a.CentroCusto).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
             return View(onePageOfArtCentroCustos);
         }
 
@@ -178,7 +178,7 @@ namespace cms_stock.Controllers
             {
                 ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
                 ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
-                return RedirectToAction("IndexUser", "CentroCustos", new { controller = "CentroCustos", action = "Index", error = "Não foi possível gravar, tente novamente." });
+                return RedirectToAction("IndexUser", "CentroCustos", new { controller = "CentroCustos", action = "IndexUser", error = "Não foi possível gravar, tente novamente." });
             }
         }
 

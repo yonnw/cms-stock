@@ -8,21 +8,21 @@ SqlCommand cmd = new SqlCommand(sql, con, transaction);
 Situações a resolver:
 
 Database:
-Centro Custo	- vfinalvenda
-				- nomecompleto
-				- referencia 
-				- lucroeuros
-				- lucroperc
-				- vorcamento
 
 Views:
 Alterar os logotipos do Quixlab
 Identificar os campos obrigatórios
 
 Validações:
-Centro de Custo - colocar lista de artigos | equipamentos | pessoal na rota de detalhes
 FuncCentrodeCustos - Se o ModelState for invalid mandar o erro para Index - Centro Custos
+EquiCentrodeCustos - Se o ModelState for invalid mandar o erro para Index - Centro Custos
 
 
 WARNINGS / NEW INSTALLATIONS:
 Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 120 e 124
+Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na View - details - CentroCustos line 167
+
+
+Danilo:
+- Fazer função equivalente ao ROR "aftersave" or "beforesave"
+- Segurança da aplicação e rotas admin e user

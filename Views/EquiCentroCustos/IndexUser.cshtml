@@ -10,12 +10,12 @@
     <div class="card">
         <div class="card-body">
             <h1>Movimentos de Equipamentos</h1>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+            @Html.PagedListPager(Model, page => Url.Action("IndexUser", new { page }),
                 new X.PagedList.Web.Common.PagedListRenderOptions {
                 LiElementClasses = new string[] { "page-item" },
                 PageClasses = new string[] { "page-link" }
                 })
-            <form asp-controller="EquiCentroCustos" asp-action="Index">
+            <form asp-controller="EquiCentroCustos" asp-action="IndexUser">
                 <div class="input-group">
                     <p>
                         Equipamento: <input type="text" name="searchString" />
@@ -38,9 +38,6 @@
                         <th>
                             Quantidade
                         </th>
-                        <th>
-                            Valor
-                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -58,9 +55,6 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Qtd)
-                            </td>
-                            <td>
-                                @String.Format("{0:#,###.00€}", item.Valor)
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

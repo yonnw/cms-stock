@@ -35,6 +35,9 @@
                         <th>
                             Funcionário
                         </th>
+                        <th>
+                            Qtd
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -49,6 +52,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Qtd)
                             </td>
                             <td>
                                 <a asp-action="EditUser" asp-route-id="@item.Id">Editar</a>

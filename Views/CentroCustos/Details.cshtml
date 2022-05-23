@@ -1,4 +1,4 @@
-﻿@model cms_stock.Models.Dominio.Entidades.CentroCusto
+﻿@model cms_stock.Models.Dominio.Entidades.CentroCusto;
 
 @{
     ViewData["Title"] = "Details";
@@ -46,6 +46,146 @@
             <div>
                 <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
                 <a asp-action="Index">Voltar</a>
+            </div>
+        </div>              
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Funcionários</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Nome</th>
+                                        <th>Qtd</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewData["Funcionarios"] as IEnumerable<cms_stock.Models.Dominio.Entidades.FuncCentroCusto>)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Data)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                                        </td>
+                                        <td>
+                                            @if(item.Qtd == 1)
+                                            {
+                                                <span class="badge badge-success px-2">@item.Qtd</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-primary px-2">@item.Qtd</span> 
+                                            }              
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:#,###.00€}", item.Valor)
+                                        </td>
+                                    </tr>
+                                    } 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Equipamentos</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Equipamento</th>
+                                        <th>Qtd</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewData["Equipamentos"] as IEnumerable<cms_stock.Models.Dominio.Entidades.EquiCentroCusto>)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Data)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Equipamento.Nome)
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-primary px-2">@item.Qtd</span>            
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:#,###.00€}", item.Valor)
+                                        </td>
+                                    </tr>
+                                    } 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Artigos | Serviços</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Art | Serv</th>
+                                        <th>Qtd</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewData["Artigos"] as IEnumerable<cms_stock.Models.Dominio.Entidades.ArtCentroCusto>)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Data)
+                                        </td>
+                                        <td>
+                                            @if(item.ArtigoId != 2)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Artigo.Nome)
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Nomeservico) 
+                                            }   
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-primary px-2">@item.Qtd</span>              
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:#,###.00€}", item.Valor)
+                                        </td>
+                                    </tr>
+                                    } 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

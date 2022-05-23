@@ -17,9 +17,11 @@ namespace cms_stock.Models.Dominio.Entidades
 
         [Required(ErrorMessage = "Enter the issued date.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataInicial { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DataFinal { get; set; }
 
         public float ValorTotal { get; set; }
@@ -28,5 +30,15 @@ namespace cms_stock.Models.Dominio.Entidades
 
         [Column(TypeName = "text")]
         public string Observacao { get; set; }
+
+        public float VFinalVenda { get; set; }
+
+        public string NomeCompleto { get; set; }
+
+        public string Referencia { get; set; }
+
+        public float LucroEuros { get; set; }
+
+        public float VOrcamento { get; set; }
     }
 }

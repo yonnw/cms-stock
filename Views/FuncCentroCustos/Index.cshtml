@@ -57,10 +57,10 @@
                                 @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                             </td>
                             <td>
-                                @String.Format("{0:#,###.00€}", item.Qtd)
+                                @Html.DisplayFor(modelItem => item.Qtd)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Valor)
+                                @String.Format("{0:#,###.00€}", item.Valor)
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

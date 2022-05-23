@@ -31,18 +31,18 @@ namespace cms_stock.Controllers
 
             if (CCustoid > 0)
             {
-                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(contextoCms1);
             }
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(f => f.Funcionario.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(f => f.Funcionario.Nome.Contains(searchString)).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(funcCentroCustos);
             }
             else
             {
-                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).ToPagedList(pageNumber, pageSize);
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(funcCentroCustos);
             }
         }
@@ -54,18 +54,18 @@ namespace cms_stock.Controllers
 
             if (CCustoid > 0)
             {
-                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid).ToPagedList(pageNumber, pageSize);
+                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(contextoCms1);
             }
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(f => f.Funcionario.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(f => f.Funcionario.Nome.Contains(searchString)).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(funcCentroCustos);
             }
             else
             {
-                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).ToPagedList(pageNumber, pageSize);
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
                 return View(funcCentroCustos);
             }
         }
@@ -111,7 +111,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd")] FuncCentroCusto funcCentroCusto)
+        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd,Valor")] FuncCentroCusto funcCentroCusto)
         {
             foreach (string key in Request.Form.Keys)
             {
