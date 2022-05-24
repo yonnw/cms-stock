@@ -161,6 +161,23 @@ namespace cms_stock.Controllers
             return View(equiCentroCusto);
         }
 
+        public async Task<IActionResult> EditUser(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var equiCentroCusto = await _context.EquiCentroCustos.FindAsync(id);
+            if (equiCentroCusto == null)
+            {
+                return NotFound();
+            }
+            ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", equiCentroCusto.CentroCustoId);
+            ViewData["EquipamentoId"] = new SelectList(_context.Equipamentos, "Id", "Nome", equiCentroCusto.EquipamentoId);
+            return View(equiCentroCusto);
+        }
+
         // POST: EquiCentroCustos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -177,7 +194,7 @@ namespace cms_stock.Controllers
             {
                 try
                 {
-                    if (equiCentroCusto.CentroCustoId > 0 && equiCentroCusto.EquipamentoId > 0)
+                    if (equiCentroCusto.CentroCustoId > 0 && equiCentroCusto.EquipamentoId > 0 && equiCentroCusto.Valor == 0)
                     {
                         var equipamento = _context.Equipamentos.Where(i => i.Id == equiCentroCusto.EquipamentoId).ToList();
                         equiCentroCusto.Valor = equipamento[0].PCusto * equiCentroCusto.Qtd;

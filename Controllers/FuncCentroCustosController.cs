@@ -196,7 +196,7 @@ namespace cms_stock.Controllers
             {
                 try
                 {
-                    if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0)
+                    if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0 && funcCentroCusto.Valor == 0)
                     {
                         var funcionario = _context.Funcionarios.Where(i => i.Id == funcCentroCusto.FuncionarioId).ToList();
                         funcCentroCusto.Valor = funcionario[0].Valordia * funcCentroCusto.Qtd;
