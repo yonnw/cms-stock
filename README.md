@@ -1,11 +1,4 @@
-﻿SqlConnection con = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=cmsstock;Uid=sa;Pwd=12345678");
-con.Open();
-SqlTransaction transaction = con.BeginTransaction();
-var sql = "UPDATE INTO CentroCustos(fechada)values(1)";
-SqlCommand cmd = new SqlCommand(sql, con, transaction);
-
-
-Situações a resolver:
+﻿Situações a resolver:
 
 Database:
 
@@ -26,3 +19,4 @@ Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na Vi
 Danilo:
 - Fazer função equivalente ao ROR "aftersave" or "beforesave", para os calculos efetuados em Edit e Create 
 - Segurança da aplicação e rotas admin e user
+- Trabalhar com database do PHC, aplicação 3 camadas?
