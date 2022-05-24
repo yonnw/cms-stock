@@ -30,6 +30,11 @@
                             <input asp-for="DataFinal" class="form-control" />
                             <span asp-validation-for="DataFinal" class="text-danger"></span>
                         </div>
+                        <div class="form-group">
+                            Valor do Orçamento
+                            <input asp-for="VOrcamento" class="form-control" />
+                            <span asp-validation-for="VOrcamento" class="text-danger"></span>
+                        </div>
                         <div class="form-group form-check">
                             <label class="form-check-label">
                                 <input class="form-check-input" asp-for="Fechada" /> @Html.DisplayNameFor(model => model.Fechada)

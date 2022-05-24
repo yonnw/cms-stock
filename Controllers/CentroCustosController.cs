@@ -78,6 +78,10 @@ namespace cms_stock.Controllers
             var totalFuncionarios = _context.FuncCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
             var totalEquipamentos = _context.EquiCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
             centroCusto.ValorTotal = totalArtigos + totalFuncionarios + totalEquipamentos;
+            if (centroCusto.VOrcamento > 0)
+            {
+                centroCusto.LucroEuros = centroCusto.VOrcamento - centroCusto.ValorTotal;
+            }
             _context.SaveChanges();
 
             ViewBag.totalArtigos = totalArtigos;
@@ -107,7 +111,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao")] CentroCusto centroCusto)
+        public async Task<IActionResult> Create([Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao,VOrcamento")] CentroCusto centroCusto)
         {
             if (ModelState.IsValid)
             {
@@ -146,7 +150,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao")] CentroCusto centroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao,VOrcamento")] CentroCusto centroCusto)
         {
             if (id != centroCusto.Id)
             {
