@@ -89,7 +89,6 @@ namespace cms_stock.Controllers
             return View(equiCentroCusto);
         }
 
-        [Logado]
         // GET: EquiCentroCustos/Create
         public IActionResult Create(int CCustoId, string NCCusto)
         {
