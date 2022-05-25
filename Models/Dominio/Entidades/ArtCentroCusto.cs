@@ -1,3 +1,4 @@
+using cms_stock.Models.Dominio.Entidades.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

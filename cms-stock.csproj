@@ -4176,7 +4176,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Dominio\Entidades\Interfaces\" />
     <Folder Include="Models\Dominio\Entidades\Enums\" />
     <Folder Include="Models\Dominio\Servico\" />
     <Folder Include="wwwroot\plugins\jqvmap\js\maps\" />
