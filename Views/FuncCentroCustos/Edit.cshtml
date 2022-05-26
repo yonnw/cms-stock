@@ -31,16 +31,35 @@
                             <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
                             <span asp-validation-for="FuncionarioId" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
-                            <label asp-for="Qtd" class="control-label"></label>
-                            <input asp-for="Qtd" class="form-control" />
-                            <span asp-validation-for="Qtd" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Valor" class="control-label"></label>
-                            <input asp-for="Valor" class="form-control" />
-                            <span asp-validation-for="Valor" class="text-danger"></span>
-                        </div>
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <td>
+                                  <div class="form-group">
+                                        Quantidade
+                                        <input asp-for="Qtd" class="form-control" />
+                                        <span asp-validation-for="Qtd" class="text-danger"></span>
+                                    </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <div class="form-group">
+                                        Custo (€)
+                                        <input asp-for="Valor" asp-format="{0:#,###.00}" class="form-control" />
+                                        <span asp-validation-for="Valor" class="text-danger"></span>
+                                    </div>
+                              </td>
+                              <td>
+                                  <div class="form-group">
+                                        Venda Unit. (€)
+                                        <input asp-for="VVendaUnit" asp-format="{0:#,###.00}" class="form-control" />
+                                        <span asp-validation-for="VVendaUnit" class="text-danger"></span>
+                                    </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-primary" />
                         </div>

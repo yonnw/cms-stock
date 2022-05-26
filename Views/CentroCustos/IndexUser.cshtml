@@ -54,6 +54,8 @@
                                     @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
                                 </th>
                                 <th></th>
+                                <td><span><a href="/CentroCustos/DetailsUser/@item.Id" data-toggle="tooltip" data-placement="top" title="Detalhes"><i class="fa fa-university"></i></a></span>
+                                </td>
                             </tr>
                             }
                             </tbody>

@@ -62,7 +62,7 @@ namespace cms_stock.Controllers
         public JsonResult AutoComplete(string prefix)
         {
             var customers = (from artigo in this._context.Artigos
-                             where artigo.Nome.StartsWith(prefix)
+                             where artigo.Nome.Contains(prefix)
                              select new
                              {
                                  label = artigo.Nome,

@@ -77,6 +77,59 @@ namespace cms_stock.Controllers
             var totalArtigos = _context.ArtCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
             var totalFuncionarios = _context.FuncCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
             var totalEquipamentos = _context.EquiCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
+
+            var totalArtigosVenda = _context.ArtCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.VVenda);
+            var totalFuncionariosVenda = _context.FuncCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.VVenda);
+            var totalEquipamentosVenda = _context.EquiCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.VVenda);
+
+            centroCusto.VFinalVenda = totalArtigosVenda + totalFuncionariosVenda + totalEquipamentosVenda;
+
+            centroCusto.ValorTotal = totalArtigos + totalFuncionarios + totalEquipamentos;
+            if (centroCusto.VOrcamento > 0)
+            {
+                centroCusto.LucroEuros = centroCusto.VOrcamento - centroCusto.ValorTotal;
+            }
+            else
+            {
+                centroCusto.LucroEuros = centroCusto.VFinalVenda - centroCusto.ValorTotal;
+            }
+            _context.SaveChanges();
+
+            ViewBag.totalArtigos = totalArtigos;
+            ViewBag.totalFuncionarios = totalFuncionarios;
+            ViewBag.totalEquipamentos = totalEquipamentos;
+
+            ViewBag.totalVendaArtigos = totalArtigosVenda;
+            ViewBag.totalVendaFuncionarios = totalFuncionariosVenda;
+            ViewBag.totalVendaEquipamentos = totalEquipamentosVenda;
+
+            ViewData["Funcionarios"] = _context.FuncCentroCustos.Include(f => f.Funcionario).Where(i => i.CentroCusto.Id == centroCusto.Id).OrderByDescending(d => d.Data).ToList();
+            ViewData["Equipamentos"] = _context.EquiCentroCustos.Include(e => e.Equipamento).Where(i => i.CentroCusto.Id == centroCusto.Id).OrderByDescending(d => d.Data).ToList();
+            ViewData["Artigos"] = _context.ArtCentroCustos.Include(a => a.Artigo).Where(i => i.CentroCusto.Id == centroCusto.Id).OrderByDescending(d => d.Data).ToList();
+
+            if (centroCusto == null)
+            {
+                return NotFound();
+            }
+
+            return View(centroCusto);
+        }
+
+
+        // GET: CentroCustos/DetailsUser/5
+        public async Task<IActionResult> DetailsUser(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var centroCusto = await _context.CentroCustos
+                .FirstOrDefaultAsync(m => m.Id == id);
+            // Faz update a tabela CentroCustos.ValorTotal de todos os ArtCentroCustos, FuncCentroCustos, EquiCentroCustos
+            var totalArtigos = _context.ArtCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
+            var totalFuncionarios = _context.FuncCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
+            var totalEquipamentos = _context.EquiCentroCustos.Where(i => i.CentroCusto.Id == centroCusto.Id).Sum(v => v.Valor);
             centroCusto.ValorTotal = totalArtigos + totalFuncionarios + totalEquipamentos;
             if (centroCusto.VOrcamento > 0)
             {

@@ -1,4 +1,3 @@
-using cms_stock.Models.Dominio.Entidades.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,6 +24,9 @@ namespace cms_stock.Models.Dominio.Entidades
         [Required]
         public float Qtd { get; set; }
         public float Valor { get; set; }
+        public float ValorUnit { get; set; }
+        public float VVenda { get; set; }
+        public float VVendaUnit { get; set; }
         public string Nomeservico { get; set; }
         public string Observacoes { get; set; }
         public string Uniservico { get; set; }

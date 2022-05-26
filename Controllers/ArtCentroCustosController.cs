@@ -10,6 +10,7 @@ using cms_stock.Models.Infraestrutura.Database;
 using Microsoft.Data.SqlClient;
 using cms_stock.Models.Infraestrutura.Autenticacao;
 using X.PagedList;
+using cms_stock.Models.Dominio.Servico;
 
 namespace cms_stock.Controllers
 {
@@ -124,11 +125,17 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,Data")] ArtCentroCusto artCentroCusto)
+        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,Data,Valor")] ArtCentroCusto artCentroCusto)
         {
             var a = Request.Form.ToList();
             //Atenção ao criar campos
             var b = a[5].Value.ToString();
+
+            var centroCustoId = artCentroCusto.CentroCustoId;
+            var centroCustos = _context.CentroCustos.Where(i => i.Id == centroCustoId).Select(n => n.Nome).ToList();
+            var centroCustoNome = centroCustos[0];
+
+            artCentroCusto.Data = DateTime.Now;
 
             if (b.Contains(','))
             {
@@ -145,27 +152,14 @@ namespace cms_stock.Controllers
             //Alterar o id do Artigo de Serviço
             if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.ArtigoId != 1048)
             {
-                var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
-                artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
+                Calcular.CalcularArt(artCentroCusto);
             }
 
             if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.Qtd > 0)
             {
                 _context.Add(artCentroCusto);
                 await _context.SaveChangesAsync();
-
-                if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
-                {
-                    ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
-                    ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
-                    return RedirectToAction("Index", "CentroCustos");
-                }
-                else
-                {
-                    ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome", artCentroCusto.ArtigoId);
-                    ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome", artCentroCusto.CentroCustoId);
-                    return RedirectToAction("IndexUser", "CentroCustos");
-                }
+                return RedirectToAction("Create", "ArtCentroCustos", new { CCustoid = centroCustoId, NCCusto = centroCustoNome }); 
             }
 
             if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
@@ -224,7 +218,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,Valor,Data")] ArtCentroCusto artCentroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,ArtigoId,Qtd,Nomeservico,Observacoes,Uniservico,ValorUnit,Data,VVendaUnit")] ArtCentroCusto artCentroCusto)
         {
             if (id != artCentroCusto.Id)
             {
@@ -235,10 +229,10 @@ namespace cms_stock.Controllers
             {
                 try
                 {
-                    if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0 && artCentroCusto.ArtigoId != 2 && artCentroCusto.Valor == 0)
+                    if (artCentroCusto.CentroCustoId > 0 && artCentroCusto.ArtigoId > 0)
                     {
-                        var artigo = _context.Artigos.Where(i => i.Id == artCentroCusto.ArtigoId).ToList();
-                        artCentroCusto.Valor = artigo[0].PCusto * artCentroCusto.Qtd;
+                        artCentroCusto.Valor = artCentroCusto.ValorUnit * artCentroCusto.Qtd;
+                        artCentroCusto.VVenda = artCentroCusto.VVendaUnit * artCentroCusto.Qtd;
                     }
                     _context.Update(artCentroCusto);
                     await _context.SaveChangesAsync();

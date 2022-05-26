@@ -51,11 +51,20 @@
                                         <span asp-validation-for="Qtd" class="text-danger"></span>
                                     </div>
                               </td>
+                            </tr>
+                            <tr>
                               <td>
                                   <div class="form-group">
-                                        Valor Total (€)
-                                        <input asp-for="Valor" asp-format="{0:#,###.00}" class="form-control" />
-                                        <span asp-validation-for="Valor" class="text-danger"></span>
+                                        Custo Unit. (€)
+                                        <input asp-for="ValorUnit" asp-format="{0:#,###.00}" class="form-control" />
+                                        <span asp-validation-for="ValorUnit" class="text-danger"></span>
+                                    </div>
+                              </td>
+                              <td>
+                                  <div class="form-group">
+                                        Venda Unit. (€)
+                                        <input asp-for="VVendaUnit" asp-format="{0:#,###.00}" class="form-control" />
+                                        <span asp-validation-for="VVendaUnit" class="text-danger"></span>
                                     </div>
                               </td>
                             </tr>

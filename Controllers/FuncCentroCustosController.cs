@@ -10,6 +10,7 @@ using cms_stock.Models.Infraestrutura.Database;
 using cms_stock.Models.Infraestrutura.Autenticacao;
 using System.Text.RegularExpressions;
 using X.PagedList;
+using cms_stock.Models.Dominio.Servico;
 
 namespace cms_stock.Controllers
 {
@@ -130,8 +131,7 @@ namespace cms_stock.Controllers
                     {
                         if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0)
                         {
-                            var funcionario = _context.Funcionarios.Where(i => i.Id == funcCentroCusto.FuncionarioId).ToList();
-                            funcCentroCusto.Valor = funcionario[0].Valordia * funcCentroCusto.Qtd;
+                            Calcular.CalcularFunc(funcCentroCusto);
                         }
                         _context.Add(funcCentroCusto);
                         await _context.SaveChangesAsync();
@@ -185,7 +185,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd,Valor")] FuncCentroCusto funcCentroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd,ValorUnit,VVendaUnit,Valor")] FuncCentroCusto funcCentroCusto)
         {
             if (id != funcCentroCusto.Id)
             {
@@ -198,9 +198,9 @@ namespace cms_stock.Controllers
                 {
                     if (funcCentroCusto.CentroCustoId > 0 && funcCentroCusto.FuncionarioId > 0 && funcCentroCusto.Valor == 0)
                     {
-                        var funcionario = _context.Funcionarios.Where(i => i.Id == funcCentroCusto.FuncionarioId).ToList();
-                        funcCentroCusto.Valor = funcionario[0].Valordia * funcCentroCusto.Qtd;
+                        Calcular.CalcularFunc(funcCentroCusto);
                     }
+                    funcCentroCusto.VVenda = funcCentroCusto.VVendaUnit * funcCentroCusto.Qtd;
                     _context.Update(funcCentroCusto);
                     await _context.SaveChangesAsync();
                 }

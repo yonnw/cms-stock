@@ -29,5 +29,8 @@ namespace cms_stock.Models.Dominio.Entidades
         public float Qtd { get; set; }
 
         public float Valor { get; set; }
+        public float ValorUnit { get; set; }
+        public float VVenda { get; set; }
+        public float VVendaUnit { get; set; }
     }
 }

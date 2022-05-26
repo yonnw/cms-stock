@@ -55,16 +55,7 @@
                                 @Html.DisplayFor(modelItem => item.Data)
                             </td>
                             <td>
-                                @if (item.Valor > 0)
-                                {
-                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
-                                }
-                                else
-                                {
-                                <div class="text-danger">
-                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
-                                </div>
-                                }
+                                @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Artigo.Nome)

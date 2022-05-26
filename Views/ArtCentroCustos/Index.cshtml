@@ -39,7 +39,10 @@
                             Qtd
                         </th>
                         <th>
-                            Valor
+                            Custo T.
+                        </th>
+                        <th>
+                            Venda T.
                         </th>
                         <th>
                             UN.A
@@ -58,7 +61,7 @@
                                 @Html.DisplayFor(modelItem => item.Data)
                             </td>
                             <td>
-                                @if (item.Valor > 0)
+                                @if (item.Valor > 0 && item.VVenda > 0)
                                 {
                                     @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
                                 }
@@ -77,6 +80,9 @@
                             </td>
                             <td>
                                 @String.Format("{0:#,###.00€}", item.Valor)
+                            </td>
+                            <td>
+                                @String.Format("{0:#,###.00€}", item.VVenda)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Artigo.Unidade)

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cms_stock.Models.Infraestrutura.Database;
 
 namespace cms_stock.Migrations
 {
     [DbContext(typeof(ContextoCms))]
-    partial class ContextoCmsModelSnapshot : ModelSnapshot
+    [Migration("20220526135005_InitialValorUnit")]
+    partial class InitialValorUnit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,12 +83,6 @@ namespace cms_stock.Migrations
 
                     b.Property<string>("Uniservico")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("VVenda")
-                        .HasColumnType("real");
-
-                    b.Property<float>("VVendaUnit")
-                        .HasColumnType("real");
 
                     b.Property<float>("Valor")
                         .HasColumnType("real");
@@ -208,12 +204,6 @@ namespace cms_stock.Migrations
                     b.Property<float>("Qtd")
                         .HasColumnType("real");
 
-                    b.Property<float>("VVenda")
-                        .HasColumnType("real");
-
-                    b.Property<float>("VVendaUnit")
-                        .HasColumnType("real");
-
                     b.Property<float>("Valor")
                         .HasColumnType("real");
 
@@ -272,12 +262,6 @@ namespace cms_stock.Migrations
                         .HasColumnType("int");
 
                     b.Property<float>("Qtd")
-                        .HasColumnType("real");
-
-                    b.Property<float>("VVenda")
-                        .HasColumnType("real");
-
-                    b.Property<float>("VVendaUnit")
                         .HasColumnType("real");
 
                     b.Property<float>("Valor")

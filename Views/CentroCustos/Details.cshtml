@@ -9,12 +9,7 @@
     <div class="card">
         <div class="card-body">
             <h3>Detalhes da Obra: @Html.DisplayFor(model => model.Nome)</h3>
-            <h5>Total em Artigos: @ViewBag.totalArtigos € - @Html.ActionLink("Artigos", "Index", new { controller = "ArtCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
-            <h5>Total em Funcionários: @ViewBag.totalFuncionarios € - @Html.ActionLink("Funcionários", "Index", new { controller = "FuncCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
-            <h5>Total em Equipamentos: @ViewBag.totalEquipamentos € - @Html.ActionLink("Equipamentos", "Index", new { controller = "EquiCentroCustos", action = "Index", CCustoid = Model.Id })</h5>
-
             <div>
-                <h4>Total de Custos: @Html.DisplayFor(model => model.ValorTotal) €</h4>
                 <hr />
                 <dl class="row">
                     <dt class = "col-sm-2">
@@ -36,6 +31,18 @@
                         @String.Format("{0:#,###.00€}", Model.VOrcamento)
                     </dd>
                     <dt class = "col-sm-2">
+                        Valor Vendas
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @String.Format("{0:#,###.00€}", Model.VFinalVenda)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Total Custos
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @String.Format("{0:#,###.00€}", Model.ValorTotal)
+                    </dd>
+                    <dt class = "col-sm-2">
                         Lucro (€)
                     </dt>
                     <dd class = "col-sm-10">
@@ -45,10 +52,15 @@
                         Lucro (%)
                     </dt>
                     <dd class = "col-sm-10">
-                    @if (Model.LucroEuros > 0)
+                    @if (Model.LucroEuros > 0 && Model.VOrcamento > 0)
                     {
                         var lucroPer = (Model.LucroEuros * 100) / Model.VOrcamento;
                         @String.Format("{0:P2}", lucroPer/100)
+                    }
+                    else
+                    {
+                        var lucroPer = (Model.LucroEuros * 100) / Model.VFinalVenda;
+                        @String.Format("{0:P2}", lucroPer/100)    
                     }
                     </dd>
                     <dt class = "col-sm-2">
@@ -77,7 +89,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h4>Funcionários</h4>
+                            <h4>Funcionários: T.Custos:@ViewBag.totalFuncionarios€ | T.Vendas:@ViewBag.totalVendaFuncionarios€ - @Html.ActionLink("Editar", "Index", new { controller = "FuncCentroCustos", action = "Index", CCustoid = Model.Id })</h4>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -86,7 +98,9 @@
                                         <th>Data</th>
                                         <th>Nome</th>
                                         <th>Qtd</th>
-                                        <th>Valor</th>
+                                        <th>P.Custo</th>
+                                        <th>V.Venda</th>
+                                        <th>%</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,17 +114,34 @@
                                             @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                                         </td>
                                         <td>
-                                            @if(item.Qtd == 1)
+                                            @Html.DisplayFor(modelItem => item.Qtd)              
+                                        </td>
+                                        <td>
+                                            @if(item.Valor > 0)
                                             {
-                                                <span class="badge badge-success px-2">@item.Qtd</span>
+                                                <span class="badge badge-primary px-2">@String.Format("{0:#,###.00€}", item.Valor)</span>
                                             }
                                             else
                                             {
-                                                <span class="badge badge-primary px-2">@item.Qtd</span> 
+                                                <span class="badge badge-danger px-2">@String.Format("{0:#,###.00€}", item.Valor)</span> 
                                             }              
                                         </td>
                                         <td>
-                                            @String.Format("{0:#,###.00€}", item.Valor)
+                                            @if(item.VVenda > 0)
+                                            {
+                                                <span class="badge badge-success px-2">@String.Format("{0:#,###.00€}", item.VVenda)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger px-2">@String.Format("{0:#,###.00€}", item.VVenda)</span> 
+                                            }              
+                                        </td>
+                                        <td>
+                                            @if (item.VVenda > item.Valor)
+                                            {
+                                                var lucroArt = (item.Valor * 100) / item.VVenda;
+                                                @String.Format("{0:P2}", 1-(lucroArt/100))
+                                            }
                                         </td>
                                     </tr>
                                     } 
@@ -125,7 +156,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h4>Equipamentos</h4>
+                            <h4>Equipamentos: T.Custos:@ViewBag.totalEquipamentos€ | T.Vendas:@ViewBag.totalVendaEquipamentos€ - @Html.ActionLink("Editar", "Index", new { controller = "EquiCentroCustos", action = "Index", CCustoid = Model.Id })</h4>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -134,7 +165,9 @@
                                         <th>Data</th>
                                         <th>Equipamento</th>
                                         <th>Qtd</th>
-                                        <th>Valor</th>
+                                        <th>P.Custo</th>
+                                        <th>V.Venda</th>
+                                        <th>%</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -148,10 +181,34 @@
                                             @Html.DisplayFor(modelItem => item.Equipamento.Nome)
                                         </td>
                                         <td>
-                                            <span class="badge badge-primary px-2">@item.Qtd</span>            
+                                            @Html.DisplayFor(modelItem => item.Qtd)           
                                         </td>
                                         <td>
-                                            @String.Format("{0:#,###.00€}", item.Valor)
+                                            @if(item.Valor > 0)
+                                            {
+                                                <span class="badge badge-primary px-2">@String.Format("{0:#,###.00€}", item.Valor)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger px-2">@String.Format("{0:#,###.00€}", item.Valor)</span> 
+                                            }              
+                                        </td>
+                                        <td>
+                                            @if(item.VVenda > 0)
+                                            {
+                                                <span class="badge badge-success px-2">@String.Format("{0:#,###.00€}", item.VVenda)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger px-2">@String.Format("{0:#,###.00€}", item.VVenda)</span> 
+                                            }              
+                                        </td>
+                                        <td>
+                                            @if (item.VVenda > item.Valor)
+                                            {
+                                                var lucroArt = (item.Valor * 100) / item.VVenda;
+                                                @String.Format("{0:P2}", 1-(lucroArt/100))
+                                            }
                                         </td>
                                     </tr>
                                     } 
@@ -166,7 +223,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h4>Artigos | Serviços</h4>
+                            <h4>Artigos | Serviços: T.Custos:@ViewBag.totalArtigos€ | T.Vendas:@ViewBag.totalVendaArtigos€ - @Html.ActionLink("Editar", "Index", new { controller = "ArtCentroCustos", action = "Index", CCustoid = Model.Id })</h4>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -175,7 +232,9 @@
                                         <th>Data</th>
                                         <th>Art | Serv</th>
                                         <th>Qtd</th>
-                                        <th>Valor</th>
+                                        <th>P.Custo</th>
+                                        <th>V.Venda</th>
+                                        <th>%</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -196,10 +255,34 @@
                                             }   
                                         </td>
                                         <td>
-                                            <span class="badge badge-primary px-2">@item.Qtd</span>              
+                                            @Html.DisplayFor(modelItem => item.Qtd)             
                                         </td>
                                         <td>
-                                            @String.Format("{0:#,###.00€}", item.Valor)
+                                            @if(item.Valor > 0)
+                                            {
+                                                <span class="badge badge-primary px-2">@String.Format("{0:#,###.00€}", item.Valor)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger px-2">@String.Format("{0:#,###.00€}", item.Valor)</span> 
+                                            }              
+                                        </td>
+                                        <td>
+                                            @if(item.VVenda > 0)
+                                            {
+                                                <span class="badge badge-success px-2">@String.Format("{0:#,###.00€}", item.VVenda)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger px-2">@String.Format("{0:#,###.00€}", item.VVenda)</span> 
+                                            }              
+                                        </td>
+                                        <td>
+                                            @if (item.VVenda > item.Valor)
+                                            {
+                                                var lucroArt = (item.Valor * 100) / item.VVenda;
+                                                @String.Format("{0:P2}", 1-(lucroArt/100))
+                                            }
                                         </td>
                                     </tr>
                                     } 

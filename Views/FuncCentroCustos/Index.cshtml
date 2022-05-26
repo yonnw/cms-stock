@@ -39,7 +39,10 @@
                             Qtd
                         </th>
                         <th>
-                            Valor
+                            Custo T.
+                        </th>
+                        <th>
+                            Venda T.
                         </th>
                         <th></th>
                     </tr>
@@ -51,7 +54,16 @@
                                 @Html.DisplayFor(modelItem => item.Data, "{0:dd/MM/yyyy}")
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                @if (item.Valor > 0 && item.VVenda > 0)
+                                {
+                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                }
+                                else
+                                {
+                                <div class="text-danger">
+                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                </div>
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Funcionario.Nome)
@@ -61,6 +73,9 @@
                             </td>
                             <td>
                                 @String.Format("{0:#,###.00€}", item.Valor)
+                            </td>
+                            <td>
+                                @String.Format("{0:#,###.00€}", item.VVenda)
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

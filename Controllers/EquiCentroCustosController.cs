@@ -10,6 +10,7 @@ using cms_stock.Models.Infraestrutura.Database;
 using cms_stock.Models.Infraestrutura.Autenticacao;
 using X.PagedList;
 using System.Text.RegularExpressions;
+using cms_stock.Models.Dominio.Servico;
 
 namespace cms_stock.Controllers
 {
@@ -128,8 +129,7 @@ namespace cms_stock.Controllers
                     {
                         if (equiCentroCusto.CentroCustoId > 0 && equiCentroCusto.EquipamentoId > 0)
                         {
-                            var equipamento = _context.Equipamentos.Where(i => i.Id == equiCentroCusto.EquipamentoId).ToList();
-                            equiCentroCusto.Valor = equipamento[0].PCusto * equiCentroCusto.Qtd;
+                            Calcular.CalcularEqui(equiCentroCusto);
                         }
                         _context.Add(equiCentroCusto);
                         await _context.SaveChangesAsync();
@@ -183,7 +183,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,EquipamentoId,Qtd,Valor,Data")] EquiCentroCusto equiCentroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,EquipamentoId,Qtd,ValorUnit,Data,VVendaUnit")] EquiCentroCusto equiCentroCusto)
         {
             if (id != equiCentroCusto.Id)
             {
@@ -196,9 +196,9 @@ namespace cms_stock.Controllers
                 {
                     if (equiCentroCusto.CentroCustoId > 0 && equiCentroCusto.EquipamentoId > 0 && equiCentroCusto.Valor == 0)
                     {
-                        var equipamento = _context.Equipamentos.Where(i => i.Id == equiCentroCusto.EquipamentoId).ToList();
-                        equiCentroCusto.Valor = equipamento[0].PCusto * equiCentroCusto.Qtd;
+                        Calcular.CalcularEqui(equiCentroCusto); 
                     }
+                    equiCentroCusto.VVenda = equiCentroCusto.VVendaUnit * equiCentroCusto.Qtd;
                     _context.Update(equiCentroCusto);
                     await _context.SaveChangesAsync();
                 }
