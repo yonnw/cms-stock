@@ -11,6 +11,7 @@ using cms_stock.Models.Infraestrutura.Autenticacao;
 using X.PagedList;
 using System.Text.RegularExpressions;
 using cms_stock.Models.Dominio.Servico;
+using cms_stock.Models.Dominio.Views;
 
 namespace cms_stock.Controllers
 {

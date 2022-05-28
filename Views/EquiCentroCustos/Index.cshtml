@@ -81,6 +81,7 @@
                                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                                 <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
                                 <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+                                @*//**//@Html.ActionLink("Inserir", "Edit", "EquiCentroCustos", new { Id = item.Id, CCustoid = item.CentroCustoId }) |*@
                             </td>
                         </tr>
                     }
