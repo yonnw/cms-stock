@@ -109,11 +109,12 @@ namespace cms_stock.Controllers
         }
 
         // GET: ArtCentroCustos/Create
-        public IActionResult Create(int CCustoId, string NCCusto)
+        public IActionResult Create(int CCustoId, string NCCusto, string MsgS)
         {
             // Recebe o id, nome do centro de custo vindo do btn index-centrocustos para criar o artigo
             ViewBag.ccusto = CCustoId;
             ViewBag.nomeccusto = NCCusto;
+            ViewBag.msgs = MsgS;
 
             ViewData["ArtigoId"] = new SelectList(_context.Artigos, "Id", "Nome");
             ViewData["CentroCustoId"] = new SelectList(_context.CentroCustos, "Id", "Nome");
@@ -159,7 +160,7 @@ namespace cms_stock.Controllers
             {
                 _context.Add(artCentroCusto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Create", "ArtCentroCustos", new { CCustoid = centroCustoId, NCCusto = centroCustoNome }); 
+                return RedirectToAction("Create", "ArtCentroCustos", new { CCustoid = centroCustoId, NCCusto = centroCustoNome, MsgS = "Criado com sucesso!" }); 
             }
 
             if (HttpContext.Request.Cookies.Keys.Contains("adm_cms_dv"))
