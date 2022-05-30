@@ -20,6 +20,7 @@ namespace cms_stock.Controllers
             _context = context;
         }
 
+        [Logado]
         // GET: Equipamentos
         public async Task<IActionResult> Index()
         {

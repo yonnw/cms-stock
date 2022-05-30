@@ -40,10 +40,10 @@
                             P. Custo
                         </th>
                         <th>
-                            Inativo
+                            UNI.
                         </th>
                         <th>
-                            Observações
+                            Inativo
                         </th>
                         <th></th>
                     </tr>
@@ -51,28 +51,28 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Referencia)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <td>
-                                @String.Format("{0:#,###.00€}", item.PCusto)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Inativo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Observacao)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Referencia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @String.Format("{0:#,###.00€}", item.PCusto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Unidade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Inativo)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

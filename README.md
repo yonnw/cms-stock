@@ -15,8 +15,8 @@ Identificar os campos obrigatórios
 Validações:
 
 WARNINGS / NEW INSTALLATIONS:
-Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 120 e 124 (Create calculo) e 242 (Edit calculo)
-Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na View - details - CentroCustos line 167
+Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 150 e 154 (Create calculo)
+Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na View - details - CentroCustos line 248
 
 
 Danilo:

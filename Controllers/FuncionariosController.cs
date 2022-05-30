@@ -21,6 +21,7 @@ namespace cms_stock.Controllers
             _context = context;
         }
 
+        [Logado]
         // GET: Funcionarios
         public async Task<IActionResult> Index()
         {

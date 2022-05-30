@@ -19,6 +19,9 @@
                             @Html.DisplayNameFor(model => model.Nome)
                         </th>
                         <th>
+                            Valor Dia
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.Inativo)
                         </th>
                         <th></th>
@@ -26,19 +29,22 @@
                 </thead>
                 <tbody>
                     @foreach (var item in Model) {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Inativo)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @String.Format("{0:#,###.00€}", item.PCusto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Inativo)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
