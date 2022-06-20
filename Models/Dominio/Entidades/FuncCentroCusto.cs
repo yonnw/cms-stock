@@ -23,7 +23,7 @@ namespace cms_stock.Models.Dominio.Entidades
         public virtual Funcionario Funcionario { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH}")]
         public DateTime Data { get; set; }
 
         public float Qtd { get; set; }
@@ -32,5 +32,8 @@ namespace cms_stock.Models.Dominio.Entidades
         public float ValorUnit { get; set; }
         public float VVenda { get; set; }
         public float VVendaUnit { get; set; }
+
+        [Column(TypeName = "text")]
+        public string Observacao { get; set; }
     }
 }

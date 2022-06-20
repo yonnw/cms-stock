@@ -229,7 +229,6 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Data</th>
                                         <th>Art | Serv</th>
                                         <th>Qtd</th>
                                         <th>P.Custo</th>
@@ -241,9 +240,6 @@
                                     @foreach (var item in ViewData["Artigos"] as IEnumerable<cms_stock.Models.Dominio.Entidades.ArtCentroCusto>)
                                     {
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Data)
-                                        </td>
                                         <td>
                                             @if(item.ArtigoId != 2)
                                             {
