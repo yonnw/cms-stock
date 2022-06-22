@@ -112,7 +112,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd,Valor")] FuncCentroCusto funcCentroCusto)
+        public async Task<IActionResult> Create([Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd,Valor,DataFim")] FuncCentroCusto funcCentroCusto)
         {
             foreach (string key in Request.Form.Keys)
             {
@@ -126,6 +126,7 @@ namespace cms_stock.Controllers
                     var apenasDigitos = new Regex(@"[^\d]");
                     var b = apenasDigitos.Replace(key, "");
                     funcCentroCusto.FuncionarioId = Convert.ToInt32(b);
+                    //funcCentroCusto.Qtd = Convert.ToInt32(funcCentroCusto.DataFim) - Convert.ToInt32(funcCentroCusto.Data);
 
                     if (ModelState.IsValid)
                     {
@@ -185,7 +186,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd,ValorUnit,VVendaUnit,Valor")] FuncCentroCusto funcCentroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CentroCustoId,FuncionarioId,Data,Qtd,ValorUnit,VVendaUnit,Valor,DataFim")] FuncCentroCusto funcCentroCusto)
         {
             if (id != funcCentroCusto.Id)
             {

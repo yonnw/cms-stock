@@ -21,10 +21,9 @@ namespace cms_stock.Models.Dominio.Entidades
         [ForeignKey("Funcionario")]
         public int FuncionarioId { get; set; }
         public virtual Funcionario Funcionario { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Data { get; set; }
+
+        public DateTime DataFim { get; set; }
 
         public float Qtd { get; set; }
 

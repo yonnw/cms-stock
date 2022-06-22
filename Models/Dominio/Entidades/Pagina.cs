@@ -30,5 +30,6 @@ namespace cms_stock.Models.Dominio.Entidades
 
         [Required]
         public int Ordem { get; set; }
+
     }
 }

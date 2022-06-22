@@ -35,14 +35,19 @@
                                         </td>
                                     </tr>
                                     }     
-                                    <div class="form-group col-sm-6">
-                                        Data (Obrigatório)
-                                        <input asp-for="Data" class="form-control" type="date"/>
+                                    <div class="form-group">
+                                        Data Inicial
+                                        <input asp-for="Data" class="form-control" />
                                         <span asp-validation-for="Data" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        Data Final
+                                        <input asp-for="DataFim" class="form-control" />
+                                        <span asp-validation-for="DataFim" class="text-danger"></span>
                                     </div>
                                     <div class="form-group col-sm-4">
                                         Quantidade (1 = Dia Completo)
-                                        <input asp-for="Qtd" class="form-control" />
+                                        <input asp-for="Qtd" class="form-control" value="0"/>
                                         <span asp-validation-for="Qtd" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
