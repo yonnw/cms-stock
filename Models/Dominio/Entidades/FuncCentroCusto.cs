@@ -25,6 +25,8 @@ namespace cms_stock.Models.Dominio.Entidades
 
         public DateTime DataFim { get; set; }
 
+        public TimeSpan CalcData { get; set; }
+
         public float Qtd { get; set; }
 
         public float Valor { get; set; }

@@ -58,7 +58,7 @@
                                     <tr>
                                         <th>Data</th>
                                         <th>Nome</th>
-                                        <th>Qtd</th>
+                                        <th>Tempo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,13 +66,13 @@
                                     {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Data)
+                                            @String.Format("{0:dd/MM/yyyy}", item.Data)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Qtd)              
+                                            @Html.DisplayFor(modelItem => item.CalcData)              
                                         </td>
                                     </tr>
                                     } 
