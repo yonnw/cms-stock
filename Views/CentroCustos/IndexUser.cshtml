@@ -29,7 +29,7 @@
                     </div>
                 </form>
                 <div class="table-responsive">
-                    <table class="table header-border">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -45,13 +45,13 @@
                                     @Html.DisplayFor(modelItem => item.Nome)
                                 </td>
                                 <th>
-                                    @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                                    @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new {@class = "fa fa-cubes"})
                                 </th>
                                 <th>
-                                    @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                                    @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new { @class = "fa fa-user-plus"})
                                 </th>
                                 <th>
-                                    @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                                    @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new { @class = "fa fa-wrench"})
                                 </th>
                                 <th></th>
                                 <td><span><a href="/CentroCustos/DetailsUser/@item.Id" data-toggle="tooltip" data-placement="top" title="Detalhes"><i class="fa fa-university"></i></a></span>
