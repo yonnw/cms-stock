@@ -49,10 +49,10 @@
                                     @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
                                 </th>
                                 <th>
-                                    @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                                    @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new { @class = "fa fa-user-plus"})
                                 </th>
                                 <th>
-                                    @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome })
+                                    @Html.ActionLink("", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new {@class = "fa fa-cubes"})
                                 </th>
                                 <th></th>
                                 <td><span><a href="/CentroCustos/Edit/@item.Id" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
