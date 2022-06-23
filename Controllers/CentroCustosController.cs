@@ -32,12 +32,12 @@ namespace cms_stock.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var centroCustos = _context.CentroCustos.Where(a => a.Nome.Contains(searchString)).ToPagedList(pageNumber, pageSize);
+                var centroCustos = _context.CentroCustos.Where(a => a.Nome.Contains(searchString) && a.Fechada == false).ToPagedList(pageNumber, pageSize);
                 return View(centroCustos);
             }
             else
             {
-                var centroCustos = _context.CentroCustos.ToPagedList(pageNumber, pageSize);
+                var centroCustos = _context.CentroCustos.Where(a => a.Fechada == false).ToPagedList(pageNumber, pageSize);
                 return View(centroCustos);
             }
         }

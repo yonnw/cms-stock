@@ -267,7 +267,6 @@ namespace cms_stock.Controllers
             return View(artCentroCusto);
         }
 
-        [Logado]
         // GET: ArtCentroCustos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

@@ -203,6 +203,7 @@ namespace cms_stock.Controllers
                         Calcular.CalcularFunc(funcCentroCusto);
                     }
                     funcCentroCusto.VVenda = funcCentroCusto.VVendaUnit * funcCentroCusto.Qtd;
+                    funcCentroCusto.CalcData = funcCentroCusto.DataFim - funcCentroCusto.Data;
                     _context.Update(funcCentroCusto);
                     await _context.SaveChangesAsync();
                 }
@@ -224,7 +225,6 @@ namespace cms_stock.Controllers
             return View(funcCentroCusto);
         }
 
-        [Logado]
         // GET: FuncCentroCustos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

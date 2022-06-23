@@ -221,7 +221,6 @@ namespace cms_stock.Controllers
             return View(equiCentroCusto);
         }
 
-        [Logado]
         // GET: EquiCentroCustos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

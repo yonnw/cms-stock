@@ -17,9 +17,14 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
-                            Data
+                            Data Inicial
                             <input asp-for="Data" class="form-control" />
                             <span asp-validation-for="Data" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            Data Final
+                            <input asp-for="DataFim" class="form-control" />
+                            <span asp-validation-for="DataFim" class="text-danger"></span>
                         </div>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
@@ -34,9 +39,9 @@
                             <span asp-validation-for="FuncionarioId" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Qtd" class="control-label"></label>
-                            <input asp-for="Qtd" class="form-control" />
-                            <span asp-validation-for="Qtd" class="text-danger"></span>
+                            Observações
+                            <input asp-for="Observacao" class="form-control" />
+                            <span asp-validation-for="Observacao" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-primary" />
