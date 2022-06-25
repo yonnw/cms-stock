@@ -1,0 +1,54 @@
+﻿@model cms_stock.Models.Dominio.Entidades.Requisicao
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutQuixlab.cshtml";
+}
+
+<div class="content-body">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            Centro de Custo
+                            <select asp-for="CentroCustoId" class="form-control" asp-items="ViewBag.CentroCustoId"></select>
+                        </div>
+                        <div class="form-group">
+                            Funcionário
+                            <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
+                        </div>
+                        <div class="form-group">
+                            Data da Requisição
+                            <input asp-for="DataPedido" class="form-control" />
+                            <span asp-validation-for="DataPedido" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            Nome do Material
+                            <input asp-for="NomeMaterial" class="form-control" />
+                            <span asp-validation-for="NomeMaterial" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Concluido" /> @Html.DisplayNameFor(model => model.Concluido)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Criar" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <a asp-action="Index">Voltar</a>
+            </div>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+        </div>
+    </div>
+</div>

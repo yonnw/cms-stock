@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cms_stock.Models.Dominio.Entidades
 {
-    public class Material
+    public class Requisicao
     {
         [Required]
         [Key]

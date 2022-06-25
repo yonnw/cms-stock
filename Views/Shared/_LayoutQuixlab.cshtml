@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>DV_gestObra</title>
+    <title>Ricardo Mota, Lda</title>
     <link rel="icon" type="~/image/png" sizes="16x16" href="~/images/favicon.png">
     <link href="~/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="~/css/style.css" rel="stylesheet">
@@ -20,27 +20,15 @@
         <div class="nav-header">
             @{
                 if (Context.Request.Cookies["adm_cms_dv"] != null) {
-                    <div class="brand-logo">
-                        <a href="/">
-                        <b class="logo-abbr"><img src="~/images/logo.png" alt=""> </b>
-                        <span class="logo-compact"><img src="~/images/logo-compact.png" alt=""></span>
-                        <span class="brand-title">
-                        <img src="~/images/logo-text.png" alt="">
-                        </span>
-                        </a>
-                    </div>
+                    <a href="/">
+                        <img src="~/images/logo_rm.png" alt="Logotipo">
+                    </a>
                 }
                 else
                 {
-                    <div class="brand-logo">
-                        <a href="/centrocustos/indexuser">
-                        <b class="logo-abbr"><img src="~/images/logo.png" alt=""> </b>
-                        <span class="logo-compact"><img src="~/images/logo-compact.png" alt=""></span>
-                        <span class="brand-title">
-                        <img src="~/images/logo-text.png" alt="">
-                        </span>
-                        </a>
-                    </div>
+                    <a href="/centrocustos/indexuser">
+                        <img src="~/images/logo_rm.png" alt="Logotipo">
+                    </a>
                 }
             }
         </div>
@@ -78,39 +66,31 @@
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-link menu-icon"></i><span class="nav-text">Artigos</span>
                         </a>
-                        @{
-                            if (Context.Request.Cookies["adm_cms_dv"] != null)
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="Index">Lista de Artigos</a></li>
-                                </ul>
-                            }
-                            else
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="IndexUser">Lista de Artigos</a></li>
-                                </ul>
-                            }
-                        }
+                        @{ if (Context.Request.Cookies["adm_cms_dv"] != null)
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="Index">Lista de Artigos</a></li>
+                            </ul> }
+                                        else
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Artigos" asp-action="IndexUser">Lista de Artigos</a></li>
+                            </ul> } }
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-link menu-icon"></i><span class="nav-text">Movimentos Artigos</span>
                         </a>
-                        @{
-                            if (Context.Request.Cookies["adm_cms_dv"] != null)
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="Index">Movimentos</a></li>
-                                </ul>
-                            }
-                            else
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="IndexUser">Movimentos</a></li>
-                                </ul>
-                            }
-                        }
+                        @{ if (Context.Request.Cookies["adm_cms_dv"] != null)
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="Index">Movimentos</a></li>
+                            </ul> }
+                                        else
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="ArtCentroCustos" asp-action="IndexUser">Movimentos</a></li>
+                            </ul> } }
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -123,21 +103,17 @@
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">Movimentos Funcionários</span>
-                        </a>                        
-                        @{
-                            if (Context.Request.Cookies["adm_cms_dv"] != null)
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="Index">Movimentos</a></li>
-                                </ul>
-                            }
-                            else
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="IndexUser">Movimentos</a></li>
-                                </ul>
-                            }
-                        }
+                        </a>
+                        @{ if (Context.Request.Cookies["adm_cms_dv"] != null)
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="Index">Movimentos</a></li>
+                            </ul> }
+                                        else
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="IndexUser">Movimentos</a></li>
+                            </ul> } }
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -151,20 +127,25 @@
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-support menu-icon"></i><span class="nav-text">Movimentos Equipamentos</span>
                         </a>
-                        @{
-                            if (Context.Request.Cookies["adm_cms_dv"] != null)
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="EquiCentroCustos" asp-action="Index">Movimentos</a></li>
-                                </ul>
-                            }
-                            else
-                            {
-                                <ul aria-expanded="false">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="EquiCentroCustos" asp-action="IndexUser">Movimentos</a></li>
-                                </ul>
-                            }
-                        }
+                        @{ if (Context.Request.Cookies["adm_cms_dv"] != null)
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="EquiCentroCustos" asp-action="Index">Movimentos</a></li>
+                            </ul> }
+                                        else
+                                        {
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="EquiCentroCustos" asp-action="IndexUser">Movimentos</a></li>
+                            </ul> } }
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">Requisições</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Requisicoes" asp-action="Index">Novas Requisições</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Requisicoes" asp-action="Concluded">Arquivo</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

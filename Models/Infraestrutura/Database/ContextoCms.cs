@@ -27,5 +27,6 @@ namespace cms_stock.Models.Infraestrutura.Database
         public DbSet<ArtCentroCusto> ArtCentroCustos { get; set; }
         public DbSet<FuncCentroCusto> FuncCentroCustos { get; set; }
         public DbSet<EquiCentroCusto> EquiCentroCustos { get; set; }
+        public DbSet<Requisicao> Requisicoes { get; set; }
     }
 }

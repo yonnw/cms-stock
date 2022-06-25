@@ -1,0 +1,66 @@
+﻿@model IEnumerable<cms_stock.Models.Dominio.Entidades.Requisicao>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutQuixlab.cshtml";
+}
+
+
+<div class="content-body">
+    <div class="card">
+        <div class="card-body">
+            <p>
+                <a asp-action="Create">Nova Requisição</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Centro de Custo
+                        </th>
+                        <th>
+                            Funcionário
+                        </th>
+                        <th>
+                            Data
+                        </th>
+                        <th>
+                            Material
+                        </th>
+                        <th>
+                            Concluido?
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataPedido)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeMaterial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Concluido)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
