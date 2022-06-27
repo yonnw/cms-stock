@@ -9,6 +9,9 @@ using cms_stock.Models.Dominio.Entidades;
 using cms_stock.Models.Infraestrutura.Database;
 using cms_stock.Models.Infraestrutura.Autenticacao;
 using X.PagedList;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace cms_stock.Controllers
 {
@@ -60,6 +63,73 @@ namespace cms_stock.Controllers
                 var centroCustos = _context.CentroCustos.ToPagedList(pageNumber, pageSize);
                 return View(centroCustos);
             }
+        }
+
+        [Logado]
+        public async Task<IActionResult> Concluded(string error, string searchString, int? page)
+        {
+            ViewBag.error = error;
+
+            var pageNumber = page ?? 1;
+            int pageSize = 10;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var centroCustos = _context.CentroCustos.Where(a => a.Nome.Contains(searchString) && a.Fechada == true).ToPagedList(pageNumber, pageSize);
+                return View(centroCustos);
+            }
+            else
+            {
+                var centroCustos = _context.CentroCustos.Where(a => a.Fechada == true).ToPagedList(pageNumber, pageSize);
+                return View(centroCustos);
+            }
+        }
+
+        public void Imprimir(int CCustoid)
+        {
+            var centroCusto = _context.CentroCustos.Find(CCustoid);
+
+            Document doc = new Document(PageSize.A4);
+            doc.SetMargins(40, 40, 40, 80);
+            doc.AddCreationDate();
+            string caminho = @"c:\pdf\" + "relatorio.pdf";
+
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
+
+            doc.Open();
+
+            string simg = @"C:\pdf\logo_rm.png";
+            Image img = Image.GetInstance(simg);
+            img.ScaleAbsolute(50, 50);
+            //img.SetAbsolutePosition(10,30);
+
+            doc.Add(img);
+
+            Paragraph titulo = new Paragraph();
+            titulo.Font = new Font(Font.FontFamily.COURIER, 20);
+            titulo.Alignment = Element.ALIGN_RIGHT;
+            titulo.Add("Orçamento nº\n\n");
+            doc.Add(titulo);
+
+            Paragraph paragrafo = new Paragraph("", new Font(Font.NORMAL, 12));
+            string conteudo = "asdddddddddddddddddddddddddddddddddddddddddddddd";
+            paragrafo.Add(conteudo);
+            doc.Add(paragrafo);
+
+            PdfPTable table = new PdfPTable(3);
+
+            table.AddCell("Linha1, Coluna 1");
+            table.AddCell("Linha1, Coluna 2");
+            table.AddCell("Linha1, Coluna 3");
+
+            table.AddCell("Linha2, Coluna 1");
+            table.AddCell("Linha2, Coluna 2");
+            table.AddCell("Linha2, Coluna 3");
+
+            doc.Add(table);
+
+            doc.Close();
+            Response.Redirect("c:/pdf/relatorio.pdf");
         }
 
         [Logado]

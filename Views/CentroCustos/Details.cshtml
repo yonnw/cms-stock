@@ -9,6 +9,7 @@
     <div class="card">
         <div class="card-body">
             <h3>Detalhes da Obra: @Html.DisplayFor(model => model.Nome)</h3>
+            @Html.ActionLink("Imprimir", "Imprimir", new { controller = "CentroCustos", action = "Imprimir", CCustoid = Model.Id })
             <div>
                 <hr />
                 <dl class="row">

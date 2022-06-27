@@ -1,0 +1,80 @@
+﻿@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<cms_stock.Models.Dominio.Entidades.CentroCusto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutQuixlab.cshtml";
+}
+
+<div class="content-body">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Centros de Custo</h4>
+                <div class="text-danger">
+                    @ViewBag.error
+                </div>
+                <br />
+                <p><a asp-action="Create">Criar</a></p>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                new X.PagedList.Web.Common.PagedListRenderOptions {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+                })  
+                <form asp-controller="CentroCustos" asp-action="Index">
+                    <div class="input-group">
+                        <p>
+                            Centro de Custo: <input type="text" name="searchString" />
+                            <input type="submit" value="Procurar" />
+                        </p>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Artigos</th>
+                                <th>Funcionários</th>
+                                <th>Equipamentos</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                            @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <th>
+                                    @Html.ActionLink("Inserir", "Create", new { controller = "ArtCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new {@class = "fa fa-cubes"})
+                                </th>
+                                <th>
+                                    @Html.ActionLink("Inserir", "Create", new { controller = "FuncCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new { @class = "fa fa-user-plus"})
+                                </th>
+                                <th>
+                                    @Html.ActionLink("Inserir", "Create", new { controller = "EquiCentroCustos", action = "Create", CCustoid = item.Id, NCCusto = item.Nome }, new {@class = "fa fa-wrench"})
+                                </th>
+                                <th></th>
+                                <td><span><a href="/CentroCustos/Edit/@item.Id" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
+                                          <a href="/CentroCustos/Delete/@item.Id" data-toggle="tooltip" data-placement="top" title="Apagar"><i class="fa fa-close color-danger"></i></a>
+                                          <a href="/CentroCustos/Details/@item.Id" data-toggle="tooltip" data-placement="top" title="Detalhes"><i class="fa fa-university"></i></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            }
+                            </tbody>
+                    </table>
+                </div>
+                @section Scripts {
+                    <script>
+                        // Workaround to fix style of text for showing items .. through ..
+                        // Problem related to Boostrap 4 according to issue in link below
+                        // https://github.com/dncuug/X.PagedList/issues/127
+                        $(document).ready(function () {
+                            $('ul.pagination > li.disabled > a').addClass('page-link');
+                        });
+                    </script>
+                }
+            </div>
+        </div>
+</div>

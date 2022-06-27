@@ -4156,6 +4156,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.26" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.26">
       <PrivateAssets>all</PrivateAssets>
@@ -4178,6 +4179,7 @@
   <ItemGroup>
     <Folder Include="Models\Dominio\Entidades\Enums\" />
     <Folder Include="Models\Dominio\Entidades\Interfaces\" />
+    <Folder Include="wwwroot\pdf\" />
     <Folder Include="wwwroot\plugins\jqvmap\js\maps\" />
     <Folder Include="wwwroot\plugins\summernote\css\" />
   </ItemGroup>

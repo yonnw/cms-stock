@@ -147,6 +147,19 @@
                             <li><a class="dropdown-item" asp-area="" asp-controller="Requisicoes" asp-action="Concluded">Arquivo</a></li>
                         </ul>
                     </li>
+                    @{
+                        if (Context.Request.Cookies["adm_cms_dv"] != null)
+                        {
+                        <li>
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-file menu-icon"></i><span class="nav-text">Centros de Custos</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="CentroCustos" asp-action="Concluded">Arquivo</a></li>
+                            </ul>
+                        </li>
+                        }
+                    }          
                 </ul>
             </div>
         </div>
