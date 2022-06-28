@@ -202,7 +202,7 @@ namespace cms_stock.Controllers
                     {
                         Calcular.CalcularFunc(funcCentroCusto);
                     }
-                    funcCentroCusto.VVenda = funcCentroCusto.VVendaUnit * funcCentroCusto.Qtd;
+                    funcCentroCusto.VVenda = funcCentroCusto.VVendaUnit * 1;
                     funcCentroCusto.CalcData = funcCentroCusto.DataFim - funcCentroCusto.Data;
                     _context.Update(funcCentroCusto);
                     await _context.SaveChangesAsync();
