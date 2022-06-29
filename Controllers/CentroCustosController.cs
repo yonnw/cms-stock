@@ -91,8 +91,9 @@ namespace cms_stock.Controllers
         {
             var centroCusto = _context.CentroCustos.Find(CCustoid);
             var artigos = _context.ArtCentroCustos.Include(a => a.Artigo).Where(a => a.CentroCustoId == CCustoid);
-            var funcionarios = _context.FuncCentroCustos.Where(a => a.CentroCustoId == CCustoid);
-            var equipamentos = _context.EquiCentroCustos.Where(a => a.CentroCustoId == CCustoid);
+            var artigosValorTotal = _context.ArtCentroCustos.Include(a => a.Artigo).Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
+            var funcionarios = _context.FuncCentroCustos.Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
+            var equipamentos = _context.EquiCentroCustos.Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(40, 40, 40, 80);
@@ -116,29 +117,93 @@ namespace cms_stock.Controllers
             titulo.Add("Orçamento nº" + CCustoid + "\n");
             doc.Add(titulo);
 
-            Paragraph paragrafo = new Paragraph("", new Font(Font.NORMAL, 10));
+            Paragraph centrodecusto = new Paragraph("", new Font(Font.NORMAL, 10));
 
-            var nomeObra = "Centro de Custo: " + centroCusto.Nome + "\n";
-            var dataInicio = "Data: " + String.Format("{0:dd/MM/yyyy}", centroCusto.DataInicial) + "\n";
-            var totalVendas = "Valor: " + String.Format("{0:#,###.00€}", centroCusto.VFinalVenda) + "\n\n";
+            var nomeObra = "Centro de Custo: " + centroCusto.Nome + "\n\n";
+            var dataInicio = "Data de Início: " + String.Format("{0:dd/MM/yyyy}", centroCusto.DataInicial) + "\n";
+            var dataFinal = "Data de Fim: " + String.Format("{0:dd/MM/yyyy}", centroCusto.DataFinal) + "\n\n";
+            var tituloValores = "Valores do Orçamento: \n";
+            var totalMaoobra = "Mão de Obra: " + String.Format("{0:#,###.00€}", funcionarios) + "\n";
+            var totalEquipamentos = "Equipamentos: " + String.Format("{0:#,###.00€}", equipamentos) + "\n";
+            var totalArtigos = "Artigos | Serviços: " + String.Format("{0:#,###.00€}", artigosValorTotal) + "\n\n";
+            var totalVendas = "Total do Orçamento: " + String.Format("{0:#,###.00€}", centroCusto.VFinalVenda) + "\n\n";
 
-            paragrafo.Add(nomeObra);
-            paragrafo.Add(dataInicio);
-            paragrafo.Add(totalVendas);
+            centrodecusto.Add(nomeObra);
+            centrodecusto.Add(dataInicio);
+            centrodecusto.Add(dataFinal);
+            centrodecusto.Add(tituloValores);
+            centrodecusto.Add(totalMaoobra);
+            centrodecusto.Add(totalEquipamentos);
+            centrodecusto.Add(totalArtigos);
+            centrodecusto.Add(totalVendas);
 
-            doc.Add(paragrafo);
+            doc.Add(centrodecusto);
 
-            PdfPTable table = new PdfPTable(4);
+            PdfPTable tblartigos = new PdfPTable(4);
 
-            foreach(var item in artigos)
+            //Fonts
+            Font fontN12 = new Font(Font.NORMAL, 12);
+            Font fontN10 = new Font(Font.NORMAL, 10);
+
+            //relative col widths in proportions
+            tblartigos.WidthPercentage = 90f;
+            int[] firstTablecellwidth = { 46, 18, 18, 18 };
+            tblartigos.SetWidths(firstTablecellwidth);
+
+            //Hiding table border
+            tblartigos.DefaultCell.Border = Rectangle.NO_BORDER;
+
+            PdfPCell tituloTblArtigos = new PdfPCell(new Phrase("Lista de Artigos | Serviços \n", fontN12));
+            tituloTblArtigos.Colspan = 4;
+            tituloTblArtigos.Border = 0;
+            tituloTblArtigos.HorizontalAlignment = 1;
+            tblartigos.AddCell(tituloTblArtigos);
+
+            PdfPCell tituloTblNome = new PdfPCell(new Phrase("Nome", fontN10));
+            tituloTblNome.Colspan = 1;
+            tituloTblNome.Border = 0;
+            tituloTblNome.HorizontalAlignment = 1;
+            tblartigos.AddCell(tituloTblNome);
+
+            PdfPCell tituloTblQtd = new PdfPCell(new Phrase("Quantidade", fontN10));
+            tituloTblQtd.Colspan = 1;
+            tituloTblQtd.Border = 0;
+            tituloTblQtd.HorizontalAlignment = 1;
+            tblartigos.AddCell(tituloTblQtd);
+
+            PdfPCell tituloTblVUnit = new PdfPCell(new Phrase("Valor Unit.", fontN10));
+            tituloTblVUnit.Colspan = 1;
+            tituloTblVUnit.Border = 0;
+            tituloTblVUnit.HorizontalAlignment = 1;
+            tblartigos.AddCell(tituloTblVUnit);
+
+            PdfPCell tituloTblVTotal = new PdfPCell(new Phrase("Valor Total", fontN10));
+            tituloTblVTotal.Colspan = 1;
+            tituloTblVTotal.Border = 0;
+            tituloTblVTotal.HorizontalAlignment = 1;
+            tblartigos.AddCell(tituloTblVTotal);
+
+            foreach (var item in artigos)
             {
-                table.AddCell(item.Artigo.Nome);
-                table.AddCell(Convert.ToString(item.Qtd));
-                table.AddCell(String.Format("{0:#,###.00€}", item.VVendaUnit));
-                table.AddCell(String.Format("{0:#,###.00€}", item.VVenda));        
+                if (item.ArtigoId != 2)
+                {
+                    tblartigos.AddCell(new PdfPCell(new Phrase(item.Artigo.Nome, fontN10)));
+                }
+                else
+                {
+                    tblartigos.AddCell(new PdfPCell(new Phrase(item.Nomeservico, fontN10)));
+                }
+                var convertItemQtd = Convert.ToString(item.Qtd);
+                tblartigos.AddCell(new PdfPCell(new Phrase(convertItemQtd, fontN10)));
+
+                var convertItemVVendaUnit = String.Format("{0:#,###.00€}", item.VVendaUnit);
+                tblartigos.AddCell(new PdfPCell(new Phrase(convertItemVVendaUnit, fontN10)));
+
+                var convertVVenda = String.Format("{0:#,###.00€}", item.VVenda);
+                tblartigos.AddCell(new PdfPCell(new Phrase(convertVVenda, fontN10)));
             }
 
-            doc.Add(table);
+            doc.Add(tblartigos);
 
             doc.Close();
             Response.Redirect("/CentroCustos/Details/" + CCustoid);
