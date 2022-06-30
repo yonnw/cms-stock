@@ -92,8 +92,10 @@ namespace cms_stock.Controllers
             var centroCusto = _context.CentroCustos.Find(CCustoid);
             var artigos = _context.ArtCentroCustos.Include(a => a.Artigo).Where(a => a.CentroCustoId == CCustoid);
             var artigosValorTotal = _context.ArtCentroCustos.Include(a => a.Artigo).Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
-            var funcionarios = _context.FuncCentroCustos.Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
-            var equipamentos = _context.EquiCentroCustos.Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
+            var funcionarios = _context.FuncCentroCustos.Where(a => a.CentroCustoId == CCustoid);
+            var funcionariosValorTotal = _context.FuncCentroCustos.Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
+            var equipamentos = _context.EquiCentroCustos.Include(e => e.Equipamento).Where(a => a.CentroCustoId == CCustoid);
+            var equipamentosValorTotal = _context.EquiCentroCustos.Include(e => e.Equipamento).Where(a => a.CentroCustoId == CCustoid).Sum(a => a.VVenda);
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(40, 40, 40, 80);
@@ -123,8 +125,8 @@ namespace cms_stock.Controllers
             var dataInicio = "Data de Início: " + String.Format("{0:dd/MM/yyyy}", centroCusto.DataInicial) + "\n";
             var dataFinal = "Data de Fim: " + String.Format("{0:dd/MM/yyyy}", centroCusto.DataFinal) + "\n\n";
             var tituloValores = "Valores do Orçamento: \n";
-            var totalMaoobra = "Mão de Obra: " + String.Format("{0:#,###.00€}", funcionarios) + "\n";
-            var totalEquipamentos = "Equipamentos: " + String.Format("{0:#,###.00€}", equipamentos) + "\n";
+            var totalMaoobra = "Mão de Obra: " + String.Format("{0:#,###.00€}", funcionariosValorTotal) + "\n";
+            var totalEquipamentos = "Equipamentos: " + String.Format("{0:#,###.00€}", equipamentosValorTotal) + "\n";
             var totalArtigos = "Artigos | Serviços: " + String.Format("{0:#,###.00€}", artigosValorTotal) + "\n\n";
             var totalVendas = "Total do Orçamento: " + String.Format("{0:#,###.00€}", centroCusto.VFinalVenda) + "\n\n";
 
@@ -204,6 +206,63 @@ namespace cms_stock.Controllers
             }
 
             doc.Add(tblartigos);
+
+            PdfPTable tblequipamentos = new PdfPTable(4);
+
+            //relative col widths in proportions
+            tblequipamentos.WidthPercentage = 90f;
+            //int[] firstTablecellwidth = { 46, 18, 18, 18 };
+            tblequipamentos.SetWidths(firstTablecellwidth);
+
+            //Hiding table border
+            tblequipamentos.DefaultCell.Border = Rectangle.NO_BORDER;
+
+            PdfPCell tituloTblEquipamentos = new PdfPCell(new Phrase("Lista de Equipamentos \n", fontN12));
+            tituloTblEquipamentos.Colspan = 4;
+            tituloTblEquipamentos.Border = 0;
+            tituloTblEquipamentos.HorizontalAlignment = 1;
+            tblequipamentos.AddCell(tituloTblEquipamentos);
+
+            PdfPCell equipamentosTblNome = new PdfPCell(new Phrase("Nome", fontN10));
+            equipamentosTblNome.Colspan = 1;
+            equipamentosTblNome.Border = 0;
+            equipamentosTblNome.HorizontalAlignment = 1;
+            tblequipamentos.AddCell(equipamentosTblNome);
+
+            PdfPCell equipamentosTblQtd = new PdfPCell(new Phrase("Quantidade", fontN10));
+            equipamentosTblQtd.Colspan = 1;
+            equipamentosTblQtd.Border = 0;
+            equipamentosTblQtd.HorizontalAlignment = 1;
+            tblequipamentos.AddCell(equipamentosTblQtd);
+
+            PdfPCell equipamentosTblVUnit = new PdfPCell(new Phrase("Valor Unit.", fontN10));
+            equipamentosTblVUnit.Colspan = 1;
+            equipamentosTblVUnit.Border = 0;
+            equipamentosTblVUnit.HorizontalAlignment = 1;
+            tblequipamentos.AddCell(equipamentosTblVUnit);
+
+            PdfPCell equipamentosTblVTotal = new PdfPCell(new Phrase("Valor Total", fontN10));
+            equipamentosTblVTotal.Colspan = 1;
+            equipamentosTblVTotal.Border = 0;
+            equipamentosTblVTotal.HorizontalAlignment = 1;
+            tblequipamentos.AddCell(equipamentosTblVTotal);
+
+            foreach (var item in equipamentos)
+            {
+
+                tblequipamentos.AddCell(new PdfPCell(new Phrase(item.Equipamento.Nome, fontN10)));
+
+                var convertItemQtd = Convert.ToString(item.Qtd);
+                tblequipamentos.AddCell(new PdfPCell(new Phrase(convertItemQtd, fontN10)));
+
+                var convertItemVVendaUnit = String.Format("{0:#,###.00€}", item.VVendaUnit);
+                tblequipamentos.AddCell(new PdfPCell(new Phrase(convertItemVVendaUnit, fontN10)));
+
+                var convertVVenda = String.Format("{0:#,###.00€}", item.VVenda);
+                tblequipamentos.AddCell(new PdfPCell(new Phrase(convertVVenda, fontN10)));
+            }
+
+            doc.Add(tblequipamentos);
 
             doc.Close();
             Response.Redirect("/CentroCustos/Details/" + CCustoid);
