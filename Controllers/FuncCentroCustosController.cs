@@ -71,6 +71,29 @@ namespace cms_stock.Controllers
             }
         }
 
+        public async Task<IActionResult> Analise(int? CCustoid, string searchString, int? page)
+        {
+            var pageNumber = page ?? 1;
+            int pageSize = 15;
+
+            if (CCustoid > 0)
+            {
+                var contextoCms1 = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(i => i.CentroCustoId == CCustoid).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
+                return View(contextoCms1);
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).Where(f => f.CentroCusto.Nome.Contains(searchString)).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
+                return View(funcCentroCustos);
+            }
+            else
+            {
+                var funcCentroCustos = _context.FuncCentroCustos.Include(f => f.CentroCusto).Include(f => f.Funcionario).OrderByDescending(d => d.Data).ToPagedList(pageNumber, pageSize);
+                return View(funcCentroCustos);
+            }
+        }
+
         [Logado]
         // GET: FuncCentroCustos/Details/5
         public async Task<IActionResult> Details(int? id)

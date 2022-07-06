@@ -105,15 +105,18 @@
                             <i class="icon-user menu-icon"></i><span class="nav-text">Movimentos Funcionários</span>
                         </a>
                         @{ if (Context.Request.Cookies["adm_cms_dv"] != null)
-                                        {
-                            <ul aria-expanded="false">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="Index">Movimentos</a></li>
-                            </ul> }
-                                        else
-                                        {
-                            <ul aria-expanded="false">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="IndexUser">Movimentos</a></li>
-                            </ul> } }
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="Index">Movimentos</a></li>
+                                </ul> }
+                            else
+                            {
+                                <ul aria-expanded="false">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="IndexUser">Movimentos</a></li>
+                                </ul> } }
+                        <ul aria-expanded="false">
+                            <li><a class="dropdown-item" asp-area="" asp-controller="FuncCentroCustos" asp-action="Analise">Analise T</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">

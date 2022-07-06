@@ -1,0 +1,90 @@
+﻿@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<cms_stock.Models.Dominio.Entidades.FuncCentroCusto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutQuixlab.cshtml";
+}
+
+<div class="content-body">
+    <div class="card">
+        <div class="card-body">
+            <h1>Registos Funcionários</h1>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                new X.PagedList.Web.Common.PagedListRenderOptions {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+                })
+            <form asp-controller="FuncCentroCustos" asp-action="Analise">
+                <div class="input-group">
+                    <p>
+                        Centro de Custo: <input type="text" name="SearchString" />
+                        <input type="submit" value="Procurar" />
+                    </p>
+                </div>
+            </form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Inicio
+                        </th>
+                        <th>
+                            Fim
+                        </th>
+                        <th>
+                            Centro de Custo
+                        </th>
+                        <th>
+                            Funcionário
+                        </th>
+                        <th>
+                            Observação
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Data, "{0:dd/MM/yyyy}")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataFim, "{0:dd/MM/yyyy}")
+                            </td>
+                            <td>
+                                @if (item.Valor > 0 && item.VVenda > 0)
+                                {
+                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                }
+                                else
+                                {
+                                <div class="text-danger">
+                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                                </div>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Observacao)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @section Scripts {
+                <script>
+                    // Workaround to fix style of text for showing items .. through ..
+                    // Problem related to Boostrap 4 according to issue in link below
+                    // https://github.com/dncuug/X.PagedList/issues/127
+                    $(document).ready(function () {
+                        $('ul.pagination > li.disabled > a').addClass('page-link');
+                    });
+                </script>
+            }
+        </div>
+    </div>
+</div>
