@@ -27,13 +27,16 @@
                 <thead>
                     <tr>
                         <th>
+                            Centro de Custo
+                        </th>
+                        <th>
                             Inicio
                         </th>
                         <th>
                             Fim
                         </th>
                         <th>
-                            Centro de Custo
+                            T. Gasto
                         </th>
                         <th>
                             Funcionário
@@ -46,32 +49,26 @@
                 </thead>
                 <tbody>
                     @foreach (var item in Model) {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Data, "{0:dd/MM/yyyy}")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DataFim, "{0:dd/MM/yyyy}")
-                            </td>
-                            <td>
-                                @if (item.Valor > 0 && item.VVenda > 0)
-                                {
-                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
-                                }
-                                else
-                                {
-                                <div class="text-danger">
-                                    @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
-                                </div>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Funcionario.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Observacao)
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CentroCusto.Nome)
+                        </td>
+                        <td>
+                            @Convert.ToDateTime(item.DataFim).ToString("dd/MM/yyyy HH:mm")
+                        </td>
+                        <td>
+                            @Convert.ToDateTime(item.DataFim).ToString("dd/MM/yyyy HH:mm")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CalcData)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observacao)
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
