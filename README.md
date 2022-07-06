@@ -17,7 +17,7 @@ Validações:
 WARNINGS / NEW INSTALLATIONS:
 Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na função (ArtCentroCustos-Create) line 150 e 154 (Create calculo)
 Validar o ID da referencia SERVIÇOS e alterar a incrementação que está na View - details - CentroCustos line 248
-
+Centro de custo controller line 215
 
 Danilo:
 - Segurança da aplicação e rotas admin e user ?

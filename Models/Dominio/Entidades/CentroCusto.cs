@@ -40,5 +40,11 @@ namespace cms_stock.Models.Dominio.Entidades
         public float LucroEuros { get; set; }
 
         public float VOrcamento { get; set; }
+
+        public string NomeCliente { get; set; }
+
+        public string Morada { get; set; }
+
+        public string CodPostal { get; set; }
     }
 }

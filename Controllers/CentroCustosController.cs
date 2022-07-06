@@ -113,39 +113,88 @@ namespace cms_stock.Controllers
 
             doc.Add(img);
 
+            //Fonts
+            Font fontN12 = new Font(Font.NORMAL, 12);
+            Font fontN10 = new Font(Font.NORMAL, 10);
+
             Paragraph titulo = new Paragraph();
             titulo.Font = new Font(Font.FontFamily.COURIER, 12);
             titulo.Alignment = Element.ALIGN_RIGHT;
-            titulo.Add("Orçamento nº" + CCustoid + "\n");
+            titulo.Add("Orçamento nº" + CCustoid + "\n\n");
             doc.Add(titulo);
+
+            PdfPTable tblHeader = new PdfPTable(3);
+
+            //relative col widths in proportions
+            //tblHeader.WidthPercentage = 90f;
+            //int[] tblHeadercellwidth = { 45, 45 };
+            //tblHeader.SetWidths(tblHeadercellwidth);
+            tblHeader.SetWidthPercentage(new float[] { 250, 100, 250 }, PageSize.A4);
+
+            //Hiding table border
+            tblHeader.DefaultCell.Border = Rectangle.NO_BORDER;
+
+            PdfPCell nomeEmpresa = new PdfPCell(new Phrase("RICARDO MOTA - UNIPESSOAL LDA", fontN12));
+            nomeEmpresa.Colspan = 2;
+            nomeEmpresa.Border = 0;
+            nomeEmpresa.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(nomeEmpresa);
+
+            PdfPCell moradaEmpresa = new PdfPCell(new Phrase("Cliente: " + centroCusto.NomeCliente, fontN10));
+            moradaEmpresa.Colspan = 1;
+            moradaEmpresa.Border = 0;
+            moradaEmpresa.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(moradaEmpresa);
+
+            PdfPCell moradaEmpresaTbl = new PdfPCell(new Phrase("Rua do Lavadouro, nº 70", fontN10));
+            moradaEmpresaTbl.Colspan = 2;
+            moradaEmpresaTbl.Border = 0;
+            moradaEmpresaTbl.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(moradaEmpresaTbl);
+
+            PdfPCell dataInicioTbl = new PdfPCell(new Phrase("Obra: " + centroCusto.Nome, fontN10));
+            dataInicioTbl.Colspan = 1;
+            dataInicioTbl.Border = 0;
+            dataInicioTbl.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(dataInicioTbl);
+
+            PdfPCell codigopostalTbl = new PdfPCell(new Phrase("4575-279 Oldrões, Penafiel", fontN10));
+            codigopostalTbl.Colspan = 2;
+            codigopostalTbl.Border = 0;
+            codigopostalTbl.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(codigopostalTbl);
+
+            PdfPCell dataFimTbl = new PdfPCell(new Phrase("Morada: " + centroCusto.Morada, fontN10));
+            dataFimTbl.Colspan = 1;
+            dataFimTbl.Border = 0;
+            dataFimTbl.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(dataFimTbl);
+
+            PdfPCell testelTbl = new PdfPCell(new Phrase("", fontN10));
+            testelTbl.Colspan = 2;
+            testelTbl.Border = 0;
+            testelTbl.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(testelTbl);
+
+            PdfPCell codPostalClienteTbl = new PdfPCell(new Phrase("Código Postal: " + centroCusto.CodPostal, fontN10));
+            codPostalClienteTbl.Colspan = 1;
+            codPostalClienteTbl.Border = 0;
+            codPostalClienteTbl.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblHeader.AddCell(codPostalClienteTbl);
+
+            doc.Add(tblHeader);
 
             Paragraph centrodecusto = new Paragraph("", new Font(Font.NORMAL, 10));
 
-            var nomeObra = "Centro de Custo: " + centroCusto.Nome + "\n\n";
             var dataInicio = "Data de Início: " + String.Format("{0:dd/MM/yyyy}", centroCusto.DataInicial) + "\n";
             var dataFinal = "Data de Fim: " + String.Format("{0:dd/MM/yyyy}", centroCusto.DataFinal) + "\n\n";
-            var tituloValores = "Valores do Orçamento: \n";
-            var totalMaoobra = "Mão de Obra: " + String.Format("{0:#,###.00€}", funcionariosValorTotal) + "\n";
-            var totalEquipamentos = "Equipamentos: " + String.Format("{0:#,###.00€}", equipamentosValorTotal) + "\n";
-            var totalArtigos = "Artigos | Serviços: " + String.Format("{0:#,###.00€}", artigosValorTotal) + "\n\n";
-            var totalVendas = "Total do Orçamento: " + String.Format("{0:#,###.00€}", centroCusto.VFinalVenda) + "\n\n";
 
-            centrodecusto.Add(nomeObra);
             centrodecusto.Add(dataInicio);
             centrodecusto.Add(dataFinal);
-            centrodecusto.Add(tituloValores);
-            centrodecusto.Add(totalMaoobra);
-            centrodecusto.Add(totalEquipamentos);
-            centrodecusto.Add(totalArtigos);
-            centrodecusto.Add(totalVendas);
 
             doc.Add(centrodecusto);
 
             PdfPTable tblartigos = new PdfPTable(4);
-
-            //Fonts
-            Font fontN12 = new Font(Font.NORMAL, 12);
-            Font fontN10 = new Font(Font.NORMAL, 10);
 
             //relative col widths in proportions
             tblartigos.WidthPercentage = 90f;
@@ -187,7 +236,7 @@ namespace cms_stock.Controllers
 
             foreach (var item in artigos)
             {
-                if (item.ArtigoId != 2)
+                if (item.ArtigoId != 1048)
                 {
                     tblartigos.AddCell(new PdfPCell(new Phrase(item.Artigo.Nome, fontN10)));
                 }
@@ -263,6 +312,23 @@ namespace cms_stock.Controllers
             }
 
             doc.Add(tblequipamentos);
+
+            Paragraph totalDocumento = new Paragraph("\n\n\n", new Font(Font.NORMAL, 10));
+            totalDocumento.Alignment = Element.ALIGN_RIGHT;
+
+            var tituloValores = "Totais do Orçamento: \n\n";
+            var totalMaoobra = "Mão de Obra: " + String.Format("{0:#,###.00€}", funcionariosValorTotal) + "\n";
+            var totalEquipamentos = "Equipamentos: " + String.Format("{0:#,###.00€}", equipamentosValorTotal) + "\n";
+            var totalArtigos = "Artigos e Serviços: " + String.Format("{0:#,###.00€}", artigosValorTotal) + "\n\n";
+            var totalVendas = "Total Orçamento: " + String.Format("{0:#,###.00€}", centroCusto.VFinalVenda) + "\n\n";
+
+            totalDocumento.Add(tituloValores);
+            totalDocumento.Add(totalMaoobra);
+            totalDocumento.Add(totalEquipamentos);
+            totalDocumento.Add(totalArtigos);
+            totalDocumento.Add(totalVendas);
+
+            doc.Add(totalDocumento);
 
             doc.Close();
             Response.Redirect("/CentroCustos/Details/" + CCustoid);
@@ -370,7 +436,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao,VOrcamento")] CentroCusto centroCusto)
+        public async Task<IActionResult> Create([Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao,VOrcamento,CodPostal,Morada,NomeCliente")] CentroCusto centroCusto)
         {
             if (ModelState.IsValid)
             {
@@ -409,7 +475,7 @@ namespace cms_stock.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao,VOrcamento")] CentroCusto centroCusto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,DataInicial,DataFinal,Fechada,Observacao,VOrcamento,CodPostal,Morada,NomeCliente")] CentroCusto centroCusto)
         {
             if (id != centroCusto.Id)
             {

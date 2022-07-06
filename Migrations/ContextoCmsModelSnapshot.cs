@@ -149,6 +149,9 @@ namespace cms_stock.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CodPostal")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DataFinal")
                         .HasColumnType("datetime2");
 
@@ -161,10 +164,16 @@ namespace cms_stock.Migrations
                     b.Property<float>("LucroEuros")
                         .HasColumnType("real");
 
+                    b.Property<string>("Morada")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<string>("NomeCliente")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeCompleto")
                         .HasColumnType("nvarchar(max)");
