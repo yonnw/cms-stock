@@ -100,7 +100,7 @@ namespace cms_stock.Controllers
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(40, 40, 40, 80);
             doc.AddCreationDate();
-            string caminho = AppDomain.CurrentDomain.BaseDirectory + @"wwwroot\pdf\" + "Orçamento nº" + CCustoid + ".pdf";
+            string caminho = AppDomain.CurrentDomain.BaseDirectory + @"\wwwroot\pdf\" + "Orçamento nº" + CCustoid + ".pdf";
 
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
 
