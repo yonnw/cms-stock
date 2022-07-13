@@ -106,7 +106,8 @@ namespace cms_stock.Controllers
 
             doc.Open();
 
-            string simg = @"C:\pdf\logo_rm.png";
+            //string simg = @"C:\pdf\logo_rm.png";
+            string simg = @"~/cms-stock/wwwroot/images/logo_rm.png";
             Image img = Image.GetInstance(simg);
             img.ScaleAbsolute(50, 50);
             //img.SetAbsolutePosition(10,30);
