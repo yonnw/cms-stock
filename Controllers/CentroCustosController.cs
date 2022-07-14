@@ -100,14 +100,19 @@ namespace cms_stock.Controllers
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(40, 40, 40, 80);
             doc.AddCreationDate();
-            string caminho = AppDomain.CurrentDomain.BaseDirectory + @"\wwwroot\pdf\" + "Orçamento nº" + CCustoid + ".pdf";
+
+            var path = AppDomain.CurrentDomain.BaseDirectory.Replace("/bin/Debug/netcoreapp3.1/", "");
+
+            string caminho = Path.Combine($"{path}/wwwroot/", "uploads");
+
+            //string caminho = AppDomain.CurrentDomain.BaseDirectory + @"\wwwroot\pdf\" + "Orçamento nº" + CCustoid + ".pdf";
 
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
 
             doc.Open();
 
-            //string simg = @"C:\pdf\logo_rm.png";
-            string simg = @"wwwroot/images/logo_rm.png";
+            string simg = @"C:\pdf\logo_rm.png";
+            //string simg = @"wwwroot/images/logo_rm.png";
             Image img = Image.GetInstance(simg);
             img.ScaleAbsolute(50, 50);
             //img.SetAbsolutePosition(10,30);
